@@ -27,14 +27,20 @@ async function getBlogData(slug:string){
           }`,
        );
       console.log(data)
-      return data
+      return {
+        props: {
+          data,
+        },
+        revalidate: 10,
+      };
 }
 
 const BlogPage = async ({params}:{params:{slug:string}}) => {
 
     const slug = params.slug;
     console.log('hello')
-    const post = await getBlogData(slug)
+    const data = await getBlogData(slug)
+    const post = data.props.data
 
   return (
     <main className='flex flex-col md:p-12 justify-center items-center bg-zinc-50'>
