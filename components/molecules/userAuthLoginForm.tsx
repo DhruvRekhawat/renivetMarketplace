@@ -24,7 +24,7 @@ const formSchema = z.object({
   
 })
 
-export default function Subscribe() {
+export default function Login() {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -34,10 +34,8 @@ export default function Subscribe() {
       })
      
       // 2. Define a submit handler.
-      function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        alert(values)
+      async function onSubmit(values: z.infer<typeof formSchema>) {
+
       }
 
   return (
@@ -58,7 +56,7 @@ export default function Subscribe() {
             </FormItem>
           )}
         />
-        <Button type="submit" className=" border-brand-offwhite border-[1px] text-brand-offwhite w-full">Submit</Button>
+        <Button type="submit" className="bg-black text-brand-offwhite w-full">Submit</Button>
       </form>
     </Form>
   )
