@@ -25,7 +25,7 @@ export default function Home() {
           <h1 className="text-4xl  text-center my-2">Become a Partner</h1>
           <p className="text-center mx-auto my-2 md:w-2/3 p-2">Do you have a product that is Conscious, Ethical and Natural? Do you want to know your impact of the product? Is it Plastic-free? Do you work with artisans to revive their craft and livelihood?
 
-           Join Us, We're looking for you!</p>
+           Join Us, We&apos;re looking for you!</p>
           <div className="w-full flex flex-wrap justify-center gap-6 items-center mb-16">
             <Link href={'/become-a-partner'}><Button size={"lg"} className="bg-brand-brown">Apply Here</Button></Link>
 
