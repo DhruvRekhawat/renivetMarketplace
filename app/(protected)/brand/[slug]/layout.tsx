@@ -72,7 +72,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { useParams } from "next/navigation"
-function brandLayout(
+
+function BrandLayout(
   {
     children, 
   }: {
@@ -254,4 +255,4 @@ function brandLayout(
 }
 
 
-export default brandLayout
+export default BrandLayout
