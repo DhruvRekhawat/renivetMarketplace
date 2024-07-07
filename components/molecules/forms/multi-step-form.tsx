@@ -11,58 +11,58 @@ import { useForm, SubmitHandler} from 'react-hook-form'
 
 export const FormDataSchema =z.object({
     // Basic Information
-    brandName: z.string().min(2, { message: "Brand name must be at least 2 characters." }),
-    fullName: z.string().min(2, { message: "Contact name must be at least 2 characters." }),
-    email: z.string().email({ message: "Invalid email address." }),
-    phoneNumber: z.string().min(10, { message: "Phone number must be at least 10 characters." }),
+    brandName: z.string().min(2, { message: "Brand name must be at least 2 characters." }) ,
+    fullName: z.string().min(2, { message: "Contact name must be at least 2 characters." }) ,
+    email: z.string().email({ message: "Invalid email address." }) ,
+    phoneNumber: z.string().min(10, { message: "Phone number must be at least 10 characters." }) ,
     websiteUrl: z.string().url({ message: "Invalid URL." }).optional(),
   
     // Business Information
     businessType: z.enum(["Sole_Proprietorship", "Partnership", "Corporation", "LLC", "Other"], {
       errorMap: () => ({ message: "Please select a valid business type." }),
-    }),
-    businessRegistrationNumber: z.string().min(1, { message: "Business registration number is required." }),
-    businessCountryOfRegistration: z.string().min(2, { message: "businessType of registration is required." }),
+    }) ,
+    businessRegistrationNumber: z.string().min(1, { message: "Business registration number is required." }) ,
+    businessCountryOfRegistration: z.string().min(2, { message: "businessType of registration is required." }) ,
   
     // Tax Information
-    gstNumber: z.string().min(1, { message: "GST number is required." }),
+    gstNumber: z.string().min(1, { message: "GST number is required." }).optional(),
   
     // Product Information
-    productDescription: z.string().min(10, { message: "Product description must be at least 10 characters." }),
-    categories: z.array(z.string()).min(1, { message: "Select at least one category." }),
-    priceRange: z.array(z.string()).min(1, { message: "Select at least one price range." }),
-    materials: z.string().min(2, { message: "Please specify materials used." }),
+    productDescription: z.string().min(10, { message: "Product description must be at least 10 characters." }) ,
+    categories: z.array(z.string()).min(1, { message: "Select at least one category." }) ,
+    // priceRange: z.array(z.string()).min(1, { message: "Select at least one price range." }).optional(),
+    materials: z.string().min(2, { message: "Please specify materials used." }) ,
   
     // Sustainability
-    sustainabilityCertifications: z.array(z.string()),
-    unSdgs: z.array(z.string()),
+    sustainabilityCertifications: z.array(z.string()).optional(),
+    unSdgs: z.array(z.string()).optional(),
   
     // Brand Story
-    brandStory: z.string().min(50, { message: "Brand story must be at least 50 characters." }),
+    // brandStory: z.string().min(50, { message: "Brand story must be at least 50 characters." }),
   
     // Social Media
     socialMedia: z.object({
       facebook: z.string().url({ message: "Invalid Facebook URL." }).optional(),
       instagram: z.string().url({ message: "Invalid Instagram URL." }).optional(),
       twitter: z.string().url({ message: "Invalid Twitter URL." }).optional(),
-    }),
+    }).optional(),
   
     // Manufacturing and Supply Chain
-    totalProductionPerYear: z.number().positive({ message: "Production must be a positive number." }),
-    numberOfSuppliers: z.number().int().positive({ message: "Number of suppliers must be a positive integer." }),
-    supplyChainDescription: z.string().min(50, { message: "Supply chain description must be at least 50 characters." }),
-    manufacturingProcesses: z.string().min(20, { message: "Manufacturing processes must be at least 20 characters." }),
+    totalProductionPerYear: z.number().positive({ message: "Production must be a positive number." }).optional(),
+    numberOfSuppliers: z.number().int().positive({ message: "Number of suppliers must be a positive integer." }).optional(),
+    supplyChainDescription: z.string().min(50, { message: "Supply chain description must be at least 50 characters." }).optional(),
+    manufacturingProcesses: z.string().min(20, { message: "Manufacturing processes must be at least 20 characters." }).optional(),
   
     // Resource Usage
-    electricityConsumption: z.number().positive({ message: "Electricity consumption must be a positive number." }),
-    waterConsumption: z.number().positive({ message: "Water consumption must be a positive number." }),
+    electricityConsumption: z.number().positive({ message: "Electricity consumption must be a positive number." }).optional(),
+    waterConsumption: z.number().positive({ message: "Water consumption must be a positive number." }).optional(),
   
     // Waste Management
-    wastePercentage: z.number().min(0).max(100, { message: "Waste percentage must be between 0 and 100." }),
-    recycledPercentage: z.number().min(0).max(100, { message: "Recycled percentage must be between 0 and 100." }),
+    wastePercentage: z.number().min(0).max(100, { message: "Waste percentage must be between 0 and 100." }).optional(),
+    recycledPercentage: z.number().min(0).max(100, { message: "Recycled percentage must be between 0 and 100." }).optional(),
   
     // Packaging
-    packagingMaterials: z.string().min(5, { message: "Please describe packaging materials (at least 5 characters)." }),
+    packagingMaterials: z.string().min(5, { message: "Please describe packaging materials (at least 5 characters)." }) ,
   
     // File Uploads
     // brandLogo: z.string(),
@@ -115,7 +115,12 @@ const steps = [
       'numberOfSuppliers',
       'supplyChainDescription',
       'manufacturingProcesses',
-      'packagingMaterials' 
+      'packagingMaterials',
+      'recycledPercentage',
+      'wastePercentage',
+      'waterConsumption',
+      ' electricityConsumption',
+
     ]
   },
   { id: 'Step 5', name: 'Complete' }
@@ -470,7 +475,7 @@ export default function Form() {
 
               <div className='col-span-full'>
                 <label
-                  htmlFor='businessRegisterationNumber'
+                  htmlFor='businessRegistrationNumberr'
                   className='block text-sm font-medium leading-6 text-gray-900'
                 >
                   Business Registeration Number
@@ -478,9 +483,9 @@ export default function Form() {
                 <div className='mt-2'>
                   <input
                     type="text"
-                    id='businessRegisterationNumber'
+                    id='businessRegistrationNumber'
                     {...register('businessRegistrationNumber')}
-                    autoComplete='businessRegisterationNumber'
+                    autoComplete='businessRegistrationNumber'
                     className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.businessRegistrationNumber?.message && (
@@ -493,7 +498,7 @@ export default function Form() {
               
               <div className='sm:col-span-2 sm:col-start-1'>
                 <label
-                  htmlFor='country'
+                  htmlFor='businessCountryOfRegistration'
                   className='block text-sm font-medium leading-6 text-gray-900'
                 >
                   Country
@@ -501,7 +506,7 @@ export default function Form() {
                 <div className='mt-2'>
                   <input
                     type='text'
-                    id='country'
+                    id='businessCountryOfRegistration'
                     {...register('businessCountryOfRegistration')}
                     autoComplete=''
                     className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
@@ -802,7 +807,7 @@ export default function Form() {
                 <input
                   type='number'
                   id='totalProductionPerYear'
-                  onChange={(e) => handleNumberChange('totalProductionPerYear', e.target.value)}
+                  {...register('totalProductionPerYear', { valueAsNumber: true })}
                   className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                 />
                 {errors.totalProductionPerYear?.message && (
@@ -824,7 +829,7 @@ export default function Form() {
                 <input
                   type='number'
                   id='numberOfSuppliers'
-                  onChange={(e) => handleNumberChange('numberOfSuppliers', e.target.value)}
+                  {...register('numberOfSuppliers', { valueAsNumber: true })}
                   className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                 />
                 {errors.numberOfSuppliers?.message && (
@@ -846,7 +851,7 @@ export default function Form() {
                 <input
                   type='number'
                   id='electricityConsumption'
-                  onChange={(e) => handleNumberChange('electricityConsumption', e.target.value)}
+                  {...register('electricityConsumption', { valueAsNumber: true })}
                   className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                 />
                 {errors.electricityConsumption?.message && (
@@ -868,7 +873,7 @@ export default function Form() {
                 <input
                   type='number'
                   id='waterConsumption'
-                  onChange={(e) => handleNumberChange('waterConsumption', e.target.value)}
+                  {...register('waterConsumption', { valueAsNumber: true })}
                   className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                 />
                 {errors.waterConsumption?.message && (
@@ -890,7 +895,7 @@ export default function Form() {
                 <input
                   type='number'
                   id='wastePercentage'
-                  onChange={(e) => handleNumberChange('wastePercentage', e.target.value)}
+                  {...register('wastePercentage', { valueAsNumber: true })}
                   className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                 />
                 {errors.wastePercentage?.message && (
@@ -912,7 +917,7 @@ export default function Form() {
                 <input
                   type='number'
                   id='recycledPercentage'
-                  onChange={(e) => handleNumberChange('recycledPercentage', e.target.value)}
+                  {...register('recycledPercentage', { valueAsNumber: true })}
                   className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                 />
                 {errors.recycledPercentage?.message && (
@@ -995,8 +1000,9 @@ export default function Form() {
             <h2 className='text-base font-semibold leading-7 text-gray-900'>
               Complete
             </h2>
+        
             <p className='mt-1 text-sm leading-6 text-gray-600'>
-              Thank you for your submission.
+
             </p>
           </>
         )}
