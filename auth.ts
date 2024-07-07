@@ -1,44 +1,56 @@
-import NextAuth, { User, NextAuthConfig } from "next-auth";
-import Credentials from "next-auth/providers/credentials";
-import prisma from "./lib/db";
-
-const authOptions: NextAuthConfig = {
+import NextAuth, { CredentialsSignin } from "next-auth"
+import Credentials from "next-auth/providers/credentials"
+import prisma from "@/lib/db"
+import { compare } from "bcryptjs"
+ 
+export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credentials({
-      name: "Credentials",
-      credentials: {
-        username: { label: "Email", type:"email", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials): Promise<User | null> {
-        const users = [
-          {
-            id: "test-user-1",
-            userName: "test1",
-            name: "Test 1",
-            password: "pass",
-            email: "test1@donotreply.com",
-          },
-          {
-            id: "test-user-2",
-            userName: "test2",
-            name: "Test 2",
-            password: "pass",
-            email: "test2@donotreply.com",
-          },
-        ];
-        const user = users.find(
-          (user) =>
-            user.userName === credentials.username &&
-            user.password === credentials.password
-        );
-        return user
-          ? { id: user.id, name: user.name, email: user.email }
-          : null;
-      },
-    }),
-  ],
-  secret: process.env.NEXTAUTH_SECRET,
-};
+        name:"Credentials",
 
-export const { handlers, auth, signIn, signOut } = NextAuth(authOptions);
+
+        credentials: {
+            email: {label:"Email",type:"email"},
+            password: {label:"Password",type:"password"},
+          },
+
+          authorize: async(credentials) =>{
+            const email = credentials.email as string | undefined
+            const password = credentials.password as string | undefined
+
+            if(!email || !password){
+                throw new CredentialsSignin('Please provide both email and password')
+            }
+            const user = await prisma.user.findUnique({
+                where:{
+                    email: email
+                }
+            })
+            console.log(user,email)
+
+            if(!user){
+                throw new Error("user not registered")
+            }
+            if(!user.password){
+                throw new Error('Invalid email or password')
+            }
+            const isMatched = await compare(password,user.password)
+            if(!isMatched){
+                throw new Error('Password did not match')
+            }
+            const userData = {
+                name: user.name,
+                email:user.email,
+            }
+
+            return userData
+          },
+
+    })
+  ],
+
+  pages:{
+    signIn:'/user'
+  }
+})
+

@@ -21,7 +21,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Slider } from "@/components/ui/slider"
 import { redirect } from "next/navigation"
 import { useRouter } from "next/navigation"
-
+import prisma from "@/lib/db"
 const formSchema = z.object({
   // Basic Information
   brandName: z.string().min(2, { message: "Brand name must be at least 2 characters." }),
@@ -31,7 +31,7 @@ const formSchema = z.object({
   websiteUrl: z.string().url({ message: "Invalid URL." }).optional(),
 
   // Business Information
-  businessType: z.enum(["Sole Proprietorship", "Partnership", "Corporation", "LLC", "Other"], {
+  businessType: z.enum(["Sole_Proprietorship", "Partnership", "Corporation", "LLC", "Other"], {
     errorMap: () => ({ message: "Please select a valid business type." }),
   }),
   businessRegistrationNumber: z.string().min(1, { message: "Business registration number is required." }),
@@ -79,9 +79,9 @@ const formSchema = z.object({
   packagingMaterials: z.string().min(5, { message: "Please describe packaging materials (at least 5 characters)." }),
 
   // File Uploads
-  brandLogo: z.instanceof(File, { message: "Brand logo is required." }),
-  certifications: z.array(z.instanceof(File)).optional(),
-  productCatalog: z.instanceof(File, { message: "Product catalog is required." }),
+  // brandLogo: z.string(),
+  // certifications: z.array(z.string()),
+  // productCatalog: z.string(),
 })
 
 export default function BrandOnboardingForm() {
@@ -122,8 +122,12 @@ export default function BrandOnboardingForm() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log('sub')
+    await fetch('/api/submitBrandForm',{
+      method:"POST",
+      body:JSON.stringify(values)
+    }).then(()=>console.log(values))
     router.push('/approval')
   }
 
@@ -724,7 +728,7 @@ export default function BrandOnboardingForm() {
           />
         </div>
 
-        <div className="space-y-4">
+        {/* <div className="space-y-4">
           <h2 className="text-lg font-semibold">File Uploads</h2>
           <FormField
             control={form.control}
@@ -765,7 +769,7 @@ export default function BrandOnboardingForm() {
               </FormItem>
             )}
           />
-        </div>
+        </div> */}
 
         <Button type="submit">Submit</Button>
       </form>

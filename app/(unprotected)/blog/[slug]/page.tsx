@@ -26,7 +26,7 @@ async function getBlogData(slug:string){
               publishedAt
           }`,
        );
-      console.log(data)
+
       return {
         props: {
           data,
@@ -38,7 +38,6 @@ async function getBlogData(slug:string){
 const BlogPage = async ({params}:{params:{slug:string}}) => {
 
     const slug = params.slug;
-    console.log('hello')
     const data = await getBlogData(slug)
     const post = data.props.data
 

@@ -14,8 +14,8 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
-import Subscribe from "./subscribeform"
-import Login from "./userAuthLoginForm"
+import Subscribe from "./forms/subscribeform"
+import Login from "./forms/userAuthLoginForm"
 
 
 
@@ -37,7 +37,8 @@ const Navbar = () => {
             <Link href='#howitworks' className = "hover:-translate-y-0.5 transition-all hover:bg-zinc-100 p-1 rounded-md"><Search className=""></Search></Link>
             <HoverCard>
               <HoverCardTrigger><User2></User2></HoverCardTrigger>
-              <HoverCardContent>
+              <HoverCardContent className="w-96">
+                <p className="text-lg text-brand-brown my-4"> Login To My Account </p>
                 <Login></Login>
               </HoverCardContent>
             </HoverCard>

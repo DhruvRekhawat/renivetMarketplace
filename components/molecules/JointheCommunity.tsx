@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import Subscribe from './subscribeform'
+import Subscribe from './forms/subscribeform'
 import { Card, CardTitle } from '@/components/ui/card'
 import Image2 from"@/assests/community.webp"
 import { Allura } from 'next/font/google'

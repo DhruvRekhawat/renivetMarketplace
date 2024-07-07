@@ -1,4 +1,4 @@
-import BecomeAPartnerForm from '@/components/molecules/becomeAPartnerForm'
+import BecomeAPartnerForm from '@/components/molecules/forms/becomeAPartnerForm'
 import { Card } from '@/components/ui/card'
 import React from 'react'
 

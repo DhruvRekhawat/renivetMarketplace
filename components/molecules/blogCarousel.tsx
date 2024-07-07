@@ -62,13 +62,13 @@ return (
           {blogData.map((blog, index) => (
             <CarouselItem key={index} className="lg:basis-1/4 md:basis-1/3 w-3/4">
               <div className="p-4 flex flex-wrap h-full">
-                <Card className="rounded-md w-[460px] bg-white h-full ">
+                <Card className="rounded-md w-[460px] bg-brand-darkgreen h-full ">
 
                     <div className="h-[250px] w-full p-1">
                   <Image src={urlFor(blog.mainImage).url()}  width={300} height={300} alt='main image' className=" h-full w-full rounded-sm"></Image>
                   </div>
                   <CardContent className="px-4 flex flex-col justify-between gap-2">
-                  <span className="text-lg text-brand-brown">{blog.title}</span>
+                  <span className="text-lg text-white">{blog.title}</span>
                   <span className="font-semibold text-xs">Test Author</span>
                   <Link href={`/blog/${blog.slug.current}`} ><button className="bg-white hover:bg-zinc-900 hover:text-white transition-all rounded-lg text-xs border-none p-2 w-fit">{blog.time} read </button></Link>
                   </CardContent>

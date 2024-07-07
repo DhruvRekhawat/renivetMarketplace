@@ -13,12 +13,13 @@ model User {
   id          Int      @id @default(autoincrement())
   email       String   @unique
   password    String
+  role        String
   name        String?
   address     String?
   phoneNumber String?
   orders      Order[]  @relation("UserOrders")
   reviews     Review[]
-  cart        Cart? // Remove @relation attributes from this side
+  cart        Cart? 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -52,15 +53,49 @@ model Category {
 }
 
 model Brand {
-  id          Int       @id @default(autoincrement())
-  name        String    @unique
-  description String?
-  logoUrl     String?
-  website     String?
-  products    Product[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id                             Int        @id @default(autoincrement())
+  brandName                      String
+  contactName                    String
+  email                          String     @unique
+  password                       String
+  phoneNumber                    String
+  websiteUrl                     String? // Optional
+  products                       Product[]
+  businessType                   BusinessType
+  businessRegistrationNumber     String
+  countryOfRegistration          String
+  gstNumber                      String
+  productDescription             String
+  categories                     String[]
+  priceRanges                    String[]
+  materials                      String
+  sustainabilityCertifications   String[]
+  animalTesting                  Boolean
+  unSdgs                         String[]
+  brandStory                     String
+  socialMedia                    String
+  socialMediaId                  Int?
+  totalProductionPerYear         Float
+  numberOfSuppliers              Int
+  supplyChainDescription         String
+  manufacturingProcesses         String
+  electricityConsumption         Float
+  waterConsumption               Float
+  wastePercentage                Float
+  recycledPercentage             Float
+  packagingMaterials             String
+  brandLogo                      String?
+  certifications                 String?
+  productCatalog                 String?
+  createdAt                      DateTime   @default(now())
+  updatedAt                      DateTime   @updatedAt
+
 }
+
+
+
+
+
 
 model Order {
   id          Int         @id @default(autoincrement())
@@ -131,4 +166,12 @@ enum OrderStatus {
   COMPLETED
   SHIPPED
   CANCELLED
+}
+
+enum BusinessType {
+  Sole_Proprietorship
+  Partnership
+  Corporation
+  LLC
+  Other
 }
