@@ -42,7 +42,7 @@ function BrandLogin() {
               <Input id="password" type="password" required name="password"/>
             </div>
             <Button type="submit" className="w-full">
-             <Link href='/brand'> Login </Link>
+             Login
             </Button>
             {/* <Button variant="outline" className="w-full">
               Login with Google

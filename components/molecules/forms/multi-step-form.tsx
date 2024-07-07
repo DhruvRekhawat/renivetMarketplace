@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { z } from 'zod'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { useForm, SubmitHandler} from 'react-hook-form'
 
 
 export const FormDataSchema =z.object({
@@ -22,7 +22,7 @@ export const FormDataSchema =z.object({
       errorMap: () => ({ message: "Please select a valid business type." }),
     }),
     businessRegistrationNumber: z.string().min(1, { message: "Business registration number is required." }),
-    countryOfRegistration: z.string().min(2, { message: "Country of registration is required." }),
+    businessCountryOfRegistration: z.string().min(2, { message: "businessType of registration is required." }),
   
     // Tax Information
     gstNumber: z.string().min(1, { message: "GST number is required." }),
@@ -35,7 +35,6 @@ export const FormDataSchema =z.object({
   
     // Sustainability
     sustainabilityCertifications: z.array(z.string()),
-    animalTesting: z.boolean(),
     unSdgs: z.array(z.string()),
   
     // Brand Story
@@ -77,30 +76,51 @@ const steps = [
   {
     id: 'Step 1',
     name: 'Basic Information',
-    fields: ['brandName', 'fullName', 'email','phoneNumber','websiteUrl']
+    fields: [
+      'fullName',
+      'email',
+      'phoneNumber',
+      'websiteUrl',
+      'socialMedia.facebook',
+      'socialMedia.instagram',
+      'socialMedia.twitter'
+    ]
   },
   {
     id: 'Step 2',
     name: 'Business Information',
-    fields: ['country', 'state', 'city', 'street', 'zip']
+    fields: [
+      'brandName',
+      'businessType',
+      'businessRegistrationNumber',
+      'businessCountryOfRegistration',
+      'gstNumber'
+    ]
   },
   {
     id: 'Step 3',
     name: 'Product Information',
-    fields: ['country', 'state', 'city', 'street', 'zip']
+    fields: [
+      'productDescription',
+      'categories',
+      'materials',
+      'sustainabilityCertifications',
+    ]
   },
   {
     id: 'Step 4',
-    name: 'Brand Story',
-    fields: ['country', 'state', 'city', 'street', 'zip']
-  },
-  {
-    id: 'Step 5',
     name: 'Logistics',
-    fields: ['country', 'state', 'city', 'street', 'zip']
+    fields: [
+      'totalProductionPerYear',
+      'numberOfSuppliers',
+      'supplyChainDescription',
+      'manufacturingProcesses',
+      'packagingMaterials' 
+    ]
   },
-  { id: 'Step 6', name: 'Complete' }
+  { id: 'Step 5', name: 'Complete' }
 ]
+
 
 export default function Form() {
   const [previousStep, setPreviousStep] = useState(0)
@@ -110,6 +130,8 @@ export default function Form() {
   const {
     register,
     handleSubmit,
+    getValues,
+    setValue,
     watch,
     reset,
     trigger,
@@ -117,6 +139,21 @@ export default function Form() {
   } = useForm<Inputs>({
     resolver: zodResolver(FormDataSchema)
   })
+
+  const handleCheckboxChange = (field:any, value:any) => {
+    const currentValues = getValues(field) || [];
+    const newValues = currentValues.includes(value)
+      ? currentValues.filter((item:any)=> item !== value)
+      : [...currentValues, value];
+  
+    setValue(field, newValues, { shouldValidate: true });
+  };
+
+  const handleNumberChange = (field:any, value:any) => {
+    const parsedValue = parseInt(value);
+    setValue(field, isNaN(parsedValue) ? '' : parsedValue, { shouldValidate: true });
+  };
+
 
   const processForm: SubmitHandler<Inputs> = data => {
     console.log(data)
@@ -222,29 +259,7 @@ export default function Form() {
                   )}
                 </div>
               </div>
-               {/* brand name */}
-              <div className='sm:col-span-4'>
-                <label
-                  htmlFor='brandName'
-                  className='block text-sm font-medium leading-6 text-gray-900'
-                >
-                  Brand Name
-                </label>
-                <div className='mt-2'>
-                  <input
-                    type='text'
-                    id='brandName'
-                    {...register('brandName')}
-                    autoComplete='given-name'
-                    className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
-                  />
-                  {errors.brandName?.message && (
-                    <p className='mt-2 text-sm text-red-400'>
-                      {errors.brandName.message}
-                    </p>
-                  )}
-                </div>
-              </div>
+             
              {/* email */}
               <div className='sm:col-span-4'>
                 <label
@@ -398,28 +413,56 @@ export default function Form() {
               Fill your registered business details here
             </p>
 
+
+
             <div className='mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
-              <div className='sm:col-span-3'>
+
+                {/* brand name */}
+                <div className='sm:col-span-4'>
                 <label
-                  htmlFor='country'
+                  htmlFor='brandName'
                   className='block text-sm font-medium leading-6 text-gray-900'
                 >
-                  Country
+                  Brand Name
+                </label>
+                <div className='mt-2'>
+                  <input
+                    type='text'
+                    id='brandName'
+                    {...register('brandName')}
+                    autoComplete='given-name'
+                    className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                  />
+                  {errors.brandName?.message && (
+                    <p className='mt-2 text-sm text-red-400'>
+                      {errors.brandName.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+              <div className='sm:col-span-3'>
+                <label
+                  htmlFor='businessType'
+                  className='block text-sm font-medium leading-6 text-gray-900'
+                >
+                  Business Type
                 </label>
                 <div className='mt-2'>
                   <select
-                    id='country'
-                    {...register('country')}
-                    autoComplete='country-name'
+                    id='businessType'
+                    {...register('businessType')}
+
                     className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6'
                   >
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
+                    <option value={"Sole_Proprietorship"}>Sole Proprietorship</option>
+                    <option>Partnership</option>
+                    <option>Corporation</option>
+                    <option>LLC</option>
+                    <option>Other</option>
                   </select>
-                  {errors.country?.message && (
+                  {errors.businessType?.message && (
                     <p className='mt-2 text-sm text-red-400'>
-                      {errors.country.message}
+                      {errors.businessType.message}
                     </p>
                   )}
                 </div>
@@ -427,91 +470,69 @@ export default function Form() {
 
               <div className='col-span-full'>
                 <label
-                  htmlFor='street'
+                  htmlFor='businessRegisterationNumber'
                   className='block text-sm font-medium leading-6 text-gray-900'
                 >
-                  Street address
+                  Business Registeration Number
                 </label>
                 <div className='mt-2'>
                   <input
-                    type='text'
-                    id='street'
-                    {...register('street')}
-                    autoComplete='street-address'
+                    type="text"
+                    id='businessRegisterationNumber'
+                    {...register('businessRegistrationNumber')}
+                    autoComplete='businessRegisterationNumber'
                     className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
-                  {errors.street?.message && (
+                  {errors.businessRegistrationNumber?.message && (
                     <p className='mt-2 text-sm text-red-400'>
-                      {errors.street.message}
+                      {errors.businessRegistrationNumber.message}
                     </p>
                   )}
                 </div>
               </div>
-
+              
               <div className='sm:col-span-2 sm:col-start-1'>
                 <label
-                  htmlFor='city'
+                  htmlFor='country'
                   className='block text-sm font-medium leading-6 text-gray-900'
                 >
-                  City
+                  Country
                 </label>
                 <div className='mt-2'>
                   <input
                     type='text'
-                    id='city'
-                    {...register('city')}
-                    autoComplete='address-level2'
+                    id='country'
+                    {...register('businessCountryOfRegistration')}
+                    autoComplete=''
                     className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
-                  {errors.city?.message && (
+                  {errors.businessCountryOfRegistration?.message && (
                     <p className='mt-2 text-sm text-red-400'>
-                      {errors.city.message}
+                      {errors.businessCountryOfRegistration.message}
                     </p>
                   )}
                 </div>
               </div>
 
-              <div className='sm:col-span-2'>
-                <label
-                  htmlFor='state'
-                  className='block text-sm font-medium leading-6 text-gray-900'
-                >
-                  State / Province
-                </label>
-                <div className='mt-2'>
-                  <input
-                    type='text'
-                    id='state'
-                    {...register('state')}
-                    autoComplete='address-level1'
-                    className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
-                  />
-                  {errors.state?.message && (
-                    <p className='mt-2 text-sm text-red-400'>
-                      {errors.state.message}
-                    </p>
-                  )}
-                </div>
-              </div>
 
               <div className='sm:col-span-2'>
                 <label
-                  htmlFor='zip'
+                  htmlFor='gstNumber'
                   className='block text-sm font-medium leading-6 text-gray-900'
                 >
-                  ZIP / Postal code
+                  GST Number
                 </label>
                 <div className='mt-2'>
                   <input
                     type='text'
-                    id='zip'
-                    {...register('zip')}
-                    autoComplete='postal-code'
+                    id='gstNumber'
+                    {...register('gstNumber')}
+                    autoComplete=''
                     className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
-                  {errors.zip?.message && (
+                  {errors.gstNumber?.message && (
                     <p className='mt-2 text-sm text-red-400'>
-                      {errors.zip.message}
+                      {errors.gstNumber.message}
                     </p>
                   )}
                 </div>
@@ -519,8 +540,457 @@ export default function Form() {
             </div>
           </motion.div>
         )}
-
         {currentStep === 2 && (
+  <motion.div
+    initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
+    animate={{ x: 0, opacity: 1 }}
+    transition={{ duration: 0.3, ease: 'easeInOut' }}
+  >
+    <h2 className='text-base font-semibold leading-7 text-gray-900'>
+      Product Details
+    </h2>
+    <p className='mt-1 text-sm leading-6 text-gray-600'>
+      Tell us about your product here!
+    </p>
+
+    <div className='mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
+
+      {/* Product Description */}
+      <div className='sm:col-span-4'>
+        <label
+          htmlFor='productDescription'
+          className='block text-sm font-medium leading-6 text-gray-900'
+        >
+          Product Description
+        </label>
+        <div className='mt-2'>
+          <textarea
+            id='productDescription'
+            {...register('productDescription')}
+            className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+          />
+          {errors.productDescription?.message && (
+            <p className='mt-2 text-sm text-red-400'>
+              {errors.productDescription.message}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Categories */}
+      <div className='sm:col-span-3'>
+        <label
+          htmlFor='categories'
+          className='block text-sm font-medium leading-6 text-gray-900'
+        >
+          Categories
+        </label>
+        <div className='mt-2'>
+          <div className='flex justify-start items-center gap-1'>
+            <input
+              type='checkbox'
+              id='Fairtrade'
+              onChange={() => handleCheckboxChange('categories', 'Fairtrade')}
+            />
+            <p>Fairtrade</p>
+          </div>
+          <div className='flex justify-start items-center gap-1'>
+            <input
+              type='checkbox'
+              id='GOTS'
+              onChange={() => handleCheckboxChange('categories', 'GOTS')}
+            />
+            <p>GOTS</p>
+          </div>
+          <div className='flex justify-start items-center gap-1'>
+            <input
+              type='checkbox'
+              id='FSC'
+              onChange={() => handleCheckboxChange('categories', 'FSC')}
+            />
+            <p>FSC</p>
+          </div>
+          <div className='flex justify-start items-center gap-1'>
+            <input
+              type='checkbox'
+              id='USDA Organic'
+              onChange={() => handleCheckboxChange('categories', 'USDA Organic')}
+            />
+            <p>USDA Organic</p>
+          </div>
+          <div className='flex justify-start items-center gap-1'>
+            <input
+              type='checkbox'
+              id='AnimalTesting'
+              onChange={() => handleCheckboxChange('categories', 'Animal Testing')}
+            />
+            <p>Animal Testing (Does your brand test on animals?)</p>
+          </div>
+          {errors.categories?.message && (
+            <p className='mt-2 text-sm text-red-400'>
+              {errors.categories.message}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Materials Used */}
+      <div className='col-span-full'>
+        <label
+          htmlFor='materials'
+          className='block text-sm font-medium leading-6 text-gray-900'
+        >
+          Materials Used
+        </label>
+        <div className='mt-2'>
+          <input
+            type='text'
+            id='materials'
+            {...register('materials')}
+            autoComplete='materials'
+            placeholder='Please enter all the materials used'
+            className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+          />
+          {errors.materials?.message && (
+            <p className='mt-2 text-sm text-red-400'>
+              {errors.materials.message}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Sustainability Certifications */}
+      <div className='sm:col-span-2'>
+        <label
+          htmlFor='sustainabilityCertifications'
+          className='block text-sm font-medium leading-6 text-gray-900'
+        >
+          Sustainability Certifications
+        </label>
+        <div className='mt-2 flex flex-col gap-2'>
+          <div className='flex justify-start items-center gap-1'>
+            <input
+              type='checkbox'
+              id='FairtradeCert'
+              onChange={() => handleCheckboxChange('sustainabilityCertifications', 'Fairtrade')}
+            />
+            <p>Fairtrade</p>
+          </div>
+          <div className='flex justify-start items-center gap-1'>
+            <input
+              type='checkbox'
+              id='GOTSCert'
+              onChange={() => handleCheckboxChange('sustainabilityCertifications', 'GOTS')}
+            />
+            <p>GOTS</p>
+          </div>
+          <div className='flex justify-start items-center gap-1'>
+            <input
+              type='checkbox'
+              id='FSCCert'
+              onChange={() => handleCheckboxChange('sustainabilityCertifications', 'FSC')}
+            />
+            <p>FSC</p>
+          </div>
+          <div className='flex justify-start items-center gap-1'>
+            <input
+              type='checkbox'
+              id='USDAOrganicCert'
+              onChange={() => handleCheckboxChange('sustainabilityCertifications', 'USDA Organic')}
+            />
+            <p>USDA Organic</p>
+          </div>
+          <div className='flex justify-start items-center gap-1'>
+            <input
+              type='checkbox'
+              id='AnimalTestingCert'
+              onChange={() => handleCheckboxChange('sustainabilityCertifications', 'Animal Testing')}
+            />
+            <p>Animal Testing (Does your brand test on animals?)</p>
+          </div>
+          {errors.sustainabilityCertifications?.message && (
+            <p className='mt-2 text-sm text-red-400'>
+              {errors.sustainabilityCertifications.message}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* UN Sustainable Development Goals */}
+      <div className='sm:col-span-2'>
+        <label
+          htmlFor='unSdgs'
+          className='block text-sm font-medium leading-6 text-gray-900'
+        >
+          UN Sustainable Development Goals
+        </label>
+        <div className='mt-2 flex flex-col gap-2'>
+          <div className='flex justify-start items-center gap-1'>
+            <input
+              type='checkbox'
+              id='NoPoverty'
+              onChange={() => handleCheckboxChange('unSdgs', 'No Poverty')}
+            />
+            <p>No Poverty</p>
+          </div>
+          <div className='flex justify-start items-center gap-1'>
+            <input
+              type='checkbox'
+              id='ZeroHunger'
+              onChange={() => handleCheckboxChange('unSdgs', 'Zero Hunger')}
+            />
+            <p>Zero Hunger</p>
+          </div>
+          <div className='flex justify-start items-center gap-1'>
+            <input
+              type='checkbox'
+              id='GoodHealth'
+              onChange={() => handleCheckboxChange('unSdgs', 'Good Health and Well-being')}
+            />
+            <p>Good Health and Well-being</p>
+          </div>
+          <div className='flex justify-start items-center gap-1'>
+            <input
+              type='checkbox'
+              id='QualityEducation'
+              onChange={() => handleCheckboxChange('unSdgs', 'Quality Education')}
+            />
+            <p>Quality Education</p>
+          </div>
+          <div className='flex justify-start items-center gap-1'>
+            <input
+              type='checkbox'
+              id='GenderEquality'
+              onChange={() => handleCheckboxChange('unSdgs', 'Gender Equality')}
+            />
+            <p>Gender Equality</p>
+          </div>
+          {errors.unSdgs?.message && (
+            <p className='mt-2 text-sm text-red-400'>
+              {errors.unSdgs.message}
+            </p>
+          )}
+        </div>
+      </div>
+
+    </div>
+  </motion.div>
+        )}
+
+      {currentStep === 3 && (
+        <motion.div
+          initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+        >
+          <h2 className='text-base font-semibold leading-7 text-gray-900'>
+            Logistics
+          </h2>
+          <p className='mt-1 text-sm leading-6 text-gray-600'>
+            Provide details about your logistics.
+          </p>
+          <div className='mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
+            {/* Total Production Per Year */}
+            <div className='sm:col-span-3'>
+              <label
+                htmlFor='totalProductionPerYear'
+                className='block text-sm font-medium leading-6 text-gray-900'
+              >
+                Total Production Per Year
+              </label>
+              <div className='mt-2'>
+                <input
+                  type='number'
+                  id='totalProductionPerYear'
+                  onChange={(e) => handleNumberChange('totalProductionPerYear', e.target.value)}
+                  className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                />
+                {errors.totalProductionPerYear?.message && (
+                  <p className='mt-2 text-sm text-red-400'>
+                    {errors.totalProductionPerYear.message}
+                  </p>
+                )}
+              </div>
+            </div>
+            {/* Number of Suppliers */}
+            <div className='sm:col-span-3'>
+              <label
+                htmlFor='numberOfSuppliers'
+                className='block text-sm font-medium leading-6 text-gray-900'
+              >
+                Number of Suppliers
+              </label>
+              <div className='mt-2'>
+                <input
+                  type='number'
+                  id='numberOfSuppliers'
+                  onChange={(e) => handleNumberChange('numberOfSuppliers', e.target.value)}
+                  className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                />
+                {errors.numberOfSuppliers?.message && (
+                  <p className='mt-2 text-sm text-red-400'>
+                    {errors.numberOfSuppliers.message}
+                  </p>
+                )}
+              </div>
+            </div>
+            {/* Electricity Consumption */}
+            <div className='sm:col-span-3'>
+              <label
+                htmlFor='electricityConsumption'
+                className='block text-sm font-medium leading-6 text-gray-900'
+              >
+                Electricity Consumption
+              </label>
+              <div className='mt-2'>
+                <input
+                  type='number'
+                  id='electricityConsumption'
+                  onChange={(e) => handleNumberChange('electricityConsumption', e.target.value)}
+                  className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                />
+                {errors.electricityConsumption?.message && (
+                  <p className='mt-2 text-sm text-red-400'>
+                    {errors.electricityConsumption.message}
+                  </p>
+                )}
+              </div>
+            </div>
+            {/* Water Consumption */}
+            <div className='sm:col-span-3'>
+              <label
+                htmlFor='waterConsumption'
+                className='block text-sm font-medium leading-6 text-gray-900'
+              >
+                Water Consumption
+              </label>
+              <div className='mt-2'>
+                <input
+                  type='number'
+                  id='waterConsumption'
+                  onChange={(e) => handleNumberChange('waterConsumption', e.target.value)}
+                  className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                />
+                {errors.waterConsumption?.message && (
+                  <p className='mt-2 text-sm text-red-400'>
+                    {errors.waterConsumption.message}
+                  </p>
+                )}
+              </div>
+            </div>
+            {/* Waste Percentage */}
+            <div className='sm:col-span-3'>
+              <label
+                htmlFor='wastePercentage'
+                className='block text-sm font-medium leading-6 text-gray-900'
+              >
+                Waste Percentage
+              </label>
+              <div className='mt-2'>
+                <input
+                  type='number'
+                  id='wastePercentage'
+                  onChange={(e) => handleNumberChange('wastePercentage', e.target.value)}
+                  className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                />
+                {errors.wastePercentage?.message && (
+                  <p className='mt-2 text-sm text-red-400'>
+                    {errors.wastePercentage.message}
+                  </p>
+                )}
+              </div>
+            </div>
+            {/* Recycled Percentage */}
+            <div className='sm:col-span-3'>
+              <label
+                htmlFor='recycledPercentage'
+                className='block text-sm font-medium leading-6 text-gray-900'
+              >
+                Recycled Percentage
+              </label>
+              <div className='mt-2'>
+                <input
+                  type='number'
+                  id='recycledPercentage'
+                  onChange={(e) => handleNumberChange('recycledPercentage', e.target.value)}
+                  className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                />
+                {errors.recycledPercentage?.message && (
+                  <p className='mt-2 text-sm text-red-400'>
+                    {errors.recycledPercentage.message}
+                  </p>
+                )}
+              </div>
+            </div>
+            {/* Supply Chain Description */}
+            <div className='col-span-full'>
+              <label
+                htmlFor='supplyChainDescription'
+                className='block text-sm font-medium leading-6 text-gray-900'
+              >
+                Supply Chain Description
+              </label>
+              <div className='mt-2'>
+                <textarea
+                  id='supplyChainDescription'
+                  {...register('supplyChainDescription')}
+                  className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                />
+                {errors.supplyChainDescription?.message && (
+                  <p className='mt-2 text-sm text-red-400'>
+                    {errors.supplyChainDescription.message}
+                  </p>
+                )}
+              </div>
+            </div>
+            {/* Manufacturing Processes */}
+            <div className='col-span-full'>
+              <label
+                htmlFor='manufacturingProcesses'
+                className='block text-sm font-medium leading-6 text-gray-900'
+              >
+                Manufacturing Processes
+              </label>
+              <div className='mt-2'>
+                <textarea
+                  id='manufacturingProcesses'
+                  {...register('manufacturingProcesses')}
+                  className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                />
+                {errors.manufacturingProcesses?.message && (
+                  <p className='mt-2 text-sm text-red-400'>
+                    {errors.manufacturingProcesses.message}
+                  </p>
+                )}
+              </div>
+            </div>
+            {/* Packaging Materials */}
+            <div className='col-span-full'>
+              <label
+                htmlFor='packagingMaterials'
+                className='block text-sm font-medium leading-6 text-gray-900'
+              >
+                Packaging Materials
+              </label>
+              <div className='mt-2'>
+                <input
+                  type='text'
+                  id='packagingMaterials'
+                  {...register('packagingMaterials')}
+                  placeholder='Describe packaging materials used (at least 5 characters)'
+                  className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                />
+                {errors.packagingMaterials?.message && (
+                  <p className='mt-2 text-sm text-red-400'>
+                    {errors.packagingMaterials.message}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      )}
+          {currentStep === 4 && (
           <>
             <h2 className='text-base font-semibold leading-7 text-gray-900'>
               Complete
@@ -533,14 +1003,14 @@ export default function Form() {
       </form>
 
       {/* Navigation */}
-      <div className='mt-8 pt-5'>
+      <div className='my-8 pt-5 '>
         <div className='flex justify-between'>
           <button
             type='button'
             onClick={prev}
             disabled={currentStep === 0}
-            className='rounded bg-white px-2 py-1 text-sm font-semibold text-sky-900 shadow-sm ring-1 ring-inset ring-sky-300 hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-50'
-          >
+            className='rounded bg-white px-2 py-1 text-sm font-semibold text-brand-brown shadow-sm ring-1 ring-inset ring-brand-brown/85 hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-50 flex justify-center items-center gap-1'
+          > 
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
@@ -555,13 +1025,14 @@ export default function Form() {
                 d='M15.75 19.5L8.25 12l7.5-7.5'
               />
             </svg>
+            Back
           </button>
           <button
             type='button'
             onClick={next}
             disabled={currentStep === steps.length - 1}
-            className='rounded bg-white px-2 py-1 text-sm font-semibold text-sky-900 shadow-sm ring-1 ring-inset ring-sky-300 hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-50'
-          >
+            className='rounded bg-white px-2 py-1 text-sm font-semibold text-brand-brown shadow-sm ring-1 ring-inset ring-brand-brown/85 hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-50 flex justify-center items-center'
+          > Next
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
