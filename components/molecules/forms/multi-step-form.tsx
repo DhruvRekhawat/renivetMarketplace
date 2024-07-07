@@ -190,7 +190,7 @@ export default function Form() {
   }
 
   return (
-    <section className='absolute inset-0 flex flex-col justify-between sm:p-24 p-4'>
+    <section className='absolute inset-0 flex flex-col justify-between sm:p-24 px-4 py-20'>
       {/* steps */}
       <nav aria-label='Progress' className='mt-20'>
         <ol role='list' className='space-y-4 md:flex md:space-x-8 md:space-y-0'>
