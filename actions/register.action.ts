@@ -14,21 +14,34 @@ export const registerBrand = async (formdata:FormData) =>{
     const password = formdata.get('password') as string
     const confirmPassword = formdata.get('confirmPassword') as string
 
-    if(password==confirmPassword){
-        const hashedPassword = await hash(password,8)
-
-        await prisma.user.create({
-           data:{
-            name:name,
+    const existingUser = await prisma.user.findUnique({
+        where:{
             email:email,
-            password:hashedPassword,
-            role: "brand"
-           }
-        })
-        console.log('user created!')
-        redirect('/brand')
-        
+        }}
+    )
+
+    if(!existingUser){
+        if(password==confirmPassword){
+            const hashedPassword = await hash(password,8)
+    
+            await prisma.user.create({
+               data:{
+                name:name,
+                email:email,
+                password:hashedPassword,
+                role: "brand"
+               }
+            })
+            console.log('user created!')
+            redirect('/brand')
+            
+        }
     }
+    else{
+        console.log('user exists')
+    }
+
+   
     
     
     
