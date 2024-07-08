@@ -1,6 +1,6 @@
 import prisma from '../../../../../../lib/db'
 
-async function POST(formData,{ params }: { params: { symbol: string } }) {
+async function POST(formData:any,{ params }: { params: { symbol: string } }) {
     try {
         const brand = await prisma.brand.create({
             data: {
@@ -39,12 +39,11 @@ async function POST(formData,{ params }: { params: { symbol: string } }) {
         });
     
         return brand;
-    } catch (error) {
+    } catch (error:any) {
         throw new Error(`Error creating brand: ${error.message}`);
     }
 }
 
-// Example usage:
 const formData = {
     brandName: "Example Brand",
     fullName: "John Doe",
@@ -75,4 +74,5 @@ const formData = {
     recycledPercentage: 50,
     packagingMaterials: "We use biodegradable packaging."
 };
+
 
