@@ -67,23 +67,20 @@ model Brand {
   gstNumber                      String
   productDescription             String
   categories                     String[]
-  priceRanges                    String[]
   materials                      String
   sustainabilityCertifications   String[]
-  animalTesting                  Boolean
   unSdgs                         String[]
-  brandStory                     String
-  socialMedia                    String
-  socialMediaId                  Int?
-  totalProductionPerYear         Float
-  numberOfSuppliers              Int
-  supplyChainDescription         String
-  manufacturingProcesses         String
-  electricityConsumption         Float
-  waterConsumption               Float
-  wastePercentage                Float
-  recycledPercentage             Float
-  packagingMaterials             String
+  brandStory                     String?
+  socialMedia                    String?
+  totalProductionPerYear         Float?
+  numberOfSuppliers              Int?
+  supplyChainDescription         String?
+  manufacturingProcesses         String?
+  electricityConsumption         Float?
+  waterConsumption               Float?
+  wastePercentage                Float?
+  recycledPercentage             Float?
+  packagingMaterials             String?
   brandLogo                      String?
   certifications                 String?
   productCatalog                 String?
