@@ -86,8 +86,9 @@ model Brand {
   productCatalog                 String?
   createdAt                      DateTime   @default(now())
   updatedAt                      DateTime   @updatedAt
-
+  status                         Status
 }
+
 
 
 
@@ -171,4 +172,11 @@ enum BusinessType {
   Corporation
   LLC
   Other
+}
+
+enum Status{
+  DRAFT
+  PENDING
+  APPROVED
+  REMOVED
 }

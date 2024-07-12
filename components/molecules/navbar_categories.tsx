@@ -14,11 +14,11 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-
 import { ScrollArea } from "@/components/ui/scroll-area"
+// import { WomenComponents,MenComponents,KidsComponents,AccessoriesComponents,HomeAndLivingComponents } from "@/components/molecules/categories"
 
 
-const WomenComponents: { title: string; href: string; }[] = 
+export const WomenComponents: { title: string; href: string; }[] = 
 [
   {
     title: "New Arrivals",
@@ -96,11 +96,189 @@ const WomenComponents: { title: string; href: string; }[] =
     title: "Swimwear",
     href: "/shop-by-products/swimwear",
   }
-]
+] 
+export const MenComponents: { title: string; href: string; }[] = [
+    {
+      title: "Shirts",
+      href: "/shop-by-products/shirts",
+    },
+    {
+      title: "T-Shirts",
+      href: "/shop-by-products/t-shirts",
+    },
+    {
+      title: "Oversized T-Shirts",
+      href: "/shop-by-products/oversized-t-shirts",
+    },
+    {
+      title: "Jackets",
+      href: "/shop-by-products/jackets",
+    },
+    {
+      title: "Trousers",
+      href: "/shop-by-products/trousers",
+    },
+    {
+      title: "Hoodies",
+      href: "/shop-by-products/hoodies",
+    },
+    {
+      title: "Blazers & Coats",
+      href: "/shop-by-products/blazers-and-coats",
+    },
+    {
+      title: "Shorts",
+      href: "/shop-by-products/shorts",
+    },
+    {
+      title: "Co-ords",
+      href: "/shop-by-products/co-ords",
+    },
+    {
+      title: "Kurtas",
+      href: "/shop-by-products/kurtas",
+    },
+    {
+      title: "Sports & Active Wear",
+      href: "/shop-by-products/sports-and-active-wear",
+    }
+  ]
+  export const KidsComponents: { title: string; href: string; }[] = [
+    {
+      title: "Twinning Sets",
+      href: "/shop-by-products/twinning-sets",
+    },
+    {
+      title: "Girls Clothing",
+      href: "/shop-by-products/girls-clothing",
+    },
+    {
+      title: "Boys Clothing",
+      href: "/shop-by-products/boys-clothing",
+    },
+    {
+      title: "Infants",
+      href: "/shop-by-products/infants",
+    },
+    {
+      title: "Caps",
+      href: "/shop-by-products/caps",
+    },
+    {
+      title: "Sleeping Suits/Bags",
+      href: "/shop-by-products/sleeping-suits-bags",
+    },
+    {
+      title: "Booties/Socks",
+      href: "/shop-by-products/booties-socks",
+    },
+    {
+      title: "Gift Hampers",
+      href: "/shop-by-products/gift-hampers",
+    }
+  ]
+  export const AccessoriesComponents: { title: string; href: string; }[] = [
+    {
+      title: "New Arrivals",
+      href: "/shop-by-products/new-arrivals",
+    },
+    {
+      title: "Bags",
+      href: "/shop-by-products/bags",
+    },
+    {
+      title: "Tote Bags",
+      href: "/shop-by-products/tote-bags",
+    },
+    {
+      title: "Sling Bags",
+      href: "/shop-by-products/sling-bags",
+    },
+    {
+      title: "Handbags",
+      href: "/shop-by-products/handbags",
+    },
+    {
+      title: "Laptop Sleeves",
+      href: "/shop-by-products/laptop-sleeves",
+    },
+    {
+      title: "Clutches",
+      href: "/shop-by-products/clutches",
+    },
+    {
+      title: "Wallets",
+      href: "/shop-by-products/wallets",
+    }
+  ]
+  export const HomeAndLivingComponents: { title: string; href: string; }[] = [
+    {
+      title: "Home Décor",
+      href: "/shop-by-products/home-decor",
+    },
+    {
+      title: "Blankets & Bedsheets",
+      href: "/shop-by-products/blankets-and-bedsheets",
+    },
+    {
+      title: "Cushions & Pillows",
+      href: "/shop-by-products/cushions-and-pillows",
+    },
+    {
+      title: "Floor Mats And Dhurries",
+      href: "/shop-by-products/floor-mats-and-dhurries",
+    },
+    {
+      title: "Office & Stationery",
+      href: "/shop-by-products/office-and-stationery",
+    },
+    {
+      title: "Pooja Essentials",
+      href: "/shop-by-products/pooja-essentials",
+    },
+    {
+      title: "Storage & Organisers",
+      href: "/shop-by-products/storage-and-organisers",
+    },
+    {
+      title: "Travel Essentials",
+      href: "/shop-by-products/travel-essentials",
+    }
+  ]
+
+  export const ShopAllComponents: { title: string; href: string; }[] = [
+    {
+      title: "Save Sustainably",
+      href: "/shop-by-products/save-sustainably",
+    },
+    {
+      title: "New Arrivals",
+      href: "/shop-by-products/new-arrivals",
+    },
+    {
+      title: "Shop by Craft",
+      href: "/shop-by-products/shop-by-craft",
+    },
+    {
+      title: "Shop by Material",
+      href: "/shop-by-products/shop-by-material",
+    },
+    {
+      title: "Shop by Collection",
+      href: "/shop-by-products/shop-by-collection",
+    },
+    {
+      title: "Shop By Brand",
+      href: "/shop-by-products/shop-by-brand",
+    }
+  ]
+
+
 
  
 
 export function CategoriesNavbar() {
+
   return (
     <NavigationMenu className="">
       <NavigationMenuList className="py-1">
@@ -142,8 +320,8 @@ export function CategoriesNavbar() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Women</NavigationMenuTrigger>
           <NavigationMenuContent className="mx-4">
-            <ScrollArea className="h-96 w-[70vw]">
-            <ul className="grid gap-3 p-4 w-[70vw] md:grid-cols-3">
+            <ScrollArea className="h-[20rem] w-[50vw]">
+            <ul className="grid gap-3 p-4 w-[50vw] md:grid-cols-2">
               {WomenComponents.map((component) => (
                 <ListItem
                   key={component.title}
@@ -159,9 +337,9 @@ export function CategoriesNavbar() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Men</NavigationMenuTrigger>
           <NavigationMenuContent className="mx-4">
-            <ScrollArea className="h-96 w-[70vw]">
-            <ul className="grid gap-3 p-4 w-[70vw] md:grid-cols-3">
-              {WomenComponents.map((component) => (
+            <ScrollArea className="h-[20rem] w-[50vw]">
+            <ul className="grid gap-3 p-4 w-[50vw] md:grid-cols-2">
+              {MenComponents.map((component) => (
                 <ListItem
                   key={component.title}
                   title={component.title}
@@ -176,9 +354,9 @@ export function CategoriesNavbar() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Kids</NavigationMenuTrigger>
           <NavigationMenuContent className="mx-4">
-            <ScrollArea className="h-96 w-[70vw]">
-            <ul className="grid gap-3 p-4 w-[70vw] md:grid-cols-3">
-              {WomenComponents.map((component) => (
+            <ScrollArea className="h-64 w-[50vw]">
+            <ul className="grid gap-3 p-4 w-[50vw] md:grid-cols-2">
+              {KidsComponents.map((component) => (
                 <ListItem
                   key={component.title}
                   title={component.title}
@@ -189,12 +367,13 @@ export function CategoriesNavbar() {
             </ul>
             </ScrollArea>
           </NavigationMenuContent>
-
+            </NavigationMenuItem>
+            <NavigationMenuItem>
           <NavigationMenuTrigger>Accessories</NavigationMenuTrigger>
           <NavigationMenuContent className="mx-4">
-            <ScrollArea className="h-96 w-[70vw]">
-            <ul className="grid gap-3 p-4 w-[70vw] md:grid-cols-3">
-              {WomenComponents.map((component) => (
+            <ScrollArea className="h-64 w-[50vw]">
+            <ul className="grid gap-3 p-4 w-[50vw] md:grid-cols-2">
+              {AccessoriesComponents.map((component) => (
                 <ListItem
                   key={component.title}
                   title={component.title}
@@ -209,9 +388,9 @@ export function CategoriesNavbar() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Home and Living</NavigationMenuTrigger>
           <NavigationMenuContent className="mx-4">
-            <ScrollArea className="h-96 w-[70vw]">
-            <ul className="grid gap-3 p-4 w-[70vw] md:grid-cols-3">
-              {WomenComponents.map((component) => (
+            <ScrollArea className="h-64 w-[50vw]">
+            <ul className="grid gap-3 p-4 w-[50vw] md:grid-cols-2">
+              {HomeAndLivingComponents.map((component) => (
                 <ListItem
                   key={component.title}
                   title={component.title}
