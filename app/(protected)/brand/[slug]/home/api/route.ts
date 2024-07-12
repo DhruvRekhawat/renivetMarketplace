@@ -1,47 +1,52 @@
 import prisma from '../../../../../../lib/db'
 
-async function POST(formData:any,{ params }: { params: { symbol: string } }) {
-    try {
-        const brand = await prisma.brand.create({
-            data: {
-                brandName: formData.brandName,
-                contactName: formData.fullName,
-                password:"",
-                email: formData.email,
-                phoneNumber: formData.phoneNumber,
-                websiteUrl: formData.websiteUrl,
-                businessType: formData.businessType,
-                businessRegistrationNumber: formData.businessRegistrationNumber,
-                countryOfRegistration: formData.businessCountryOfRegistration,
-                gstNumber: formData.gstNumber,
-                productDescription: formData.productDescription,
-                categories: { set: formData.categories },
-                materials: formData.materials,
-                sustainabilityCertifications: { set: formData.sustainabilityCertifications },
-                unSdgs: { set: formData.unSdgs },
+// async function POST(formData:any,{ params }: { params: { symbol: string } }) {
+//     try {
+//         const brand = await prisma.brand.create({
+//             data: {
+//                 brandName: formData.brandName,
+//                 contactName: formData.fullName,
+//                 password:"",
+//                 email: formData.email,
+//                 phoneNumber: formData.phoneNumber,
+//                 websiteUrl: formData.websiteUrl,
+//                 businessType: formData.businessType,
+//                 businessRegistrationNumber: formData.businessRegistrationNumber,
+//                 countryOfRegistration: formData.businessCountryOfRegistration,
+//                 gstNumber: formData.gstNumber,
+//                 productDescription: formData.productDescription,
+//                 categories: { set: formData.categories },
+//                 materials: formData.materials,
+//                 sustainabilityCertifications: { set: formData.sustainabilityCertifications },
+//                 unSdgs: { set: formData.unSdgs },
                 
-                totalProductionPerYear: formData.totalProductionPerYear,
-                numberOfSuppliers: formData.numberOfSuppliers,
-                supplyChainDescription: formData.supplyChainDescription,
-                manufacturingProcesses: formData.manufacturingProcesses,
-                electricityConsumption: formData.electricityConsumption,
-                waterConsumption: formData.waterConsumption,
-                wastePercentage: formData.wastePercentage,
-                recycledPercentage: formData.recycledPercentage,
-                packagingMaterials: formData.packagingMaterials,
-            }
-        })
-        .then((brand) => {
-            console.log("Brand created:", brand);
-        })
-        .catch((error) => {
-            console.error("Error creating brand:", error);
-        });
+//                 totalProductionPerYear: formData.totalProductionPerYear,
+//                 numberOfSuppliers: formData.numberOfSuppliers,
+//                 supplyChainDescription: formData.supplyChainDescription,
+//                 manufacturingProcesses: formData.manufacturingProcesses,
+//                 electricityConsumption: formData.electricityConsumption,
+//                 waterConsumption: formData.waterConsumption,
+//                 wastePercentage: formData.wastePercentage,
+//                 recycledPercentage: formData.recycledPercentage,
+//                 packagingMaterials: formData.packagingMaterials,
+                
+//             }
+//         })
+//         .then((brand) => {
+//             console.log("Brand created:", brand);
+//         })
+//         .catch((error) => {
+//             console.error("Error creating brand:", error);
+//         });
     
-        return brand;
-    } catch (error:any) {
-        throw new Error(`Error creating brand: ${error.message}`);
-    }
+//         return brand;
+//     } catch (error:any) {
+//         throw new Error(`Error creating brand: ${error.message}`);
+//     }
+// }
+
+async function GET() {
+    return new Response("hello")
 }
 
 const formData = {
