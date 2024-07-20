@@ -18,6 +18,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { spectral } from "./layout";
 
 export default function Home() {
 
@@ -27,17 +28,17 @@ export default function Home() {
     <Navbar></Navbar>
     <main className="flex flex-col items-center justify-center">
        <Hero></Hero> 
-        <HowitWorks></HowitWorks>
+      
         <section className="flex flex-col space-y-4 w-full md:p-8 p-2 bg-brand-offwhite">
-          <h1 className="text-start text-4xl  mt-16">Latest Stories</h1>
+          <h1 className={`text-start text-4xl  mt-16` + " "+(spectral.className)}>Latest Stories</h1>
           <h3><Link href="/blogs"><u>View all</u></Link></h3>
           <BlogCarousel></BlogCarousel>
         </section>
-
+        <HowitWorks></HowitWorks>
         <JointheCommunity></JointheCommunity>
         
         <section className=" bg-brand-offwhite py-8" id="becomeapartner" >
-          <h1 className="text-4xl  text-center my-2">Become a Partner</h1>
+          <h1 className={`text-4xl  text-center my-2`+ " "+ spectral.className}>Become a Partner</h1>
           <p className="text-center mx-auto my-2 md:w-2/3 p-2">Do you have a product that is Conscious, Ethical and Natural? Do you want to know your impact of the product? Is it Plastic-free? Do you work with artisans to revive their craft and livelihood?
 
            Join Us, We&apos;re looking for you!</p>

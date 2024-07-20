@@ -9,6 +9,7 @@ import { Card, CardContent } from "../ui/card"
 import {client,urlFor} from '@/sanity/lib/client'  
 import Image from "next/image"
 import Link from "next/link";
+import { spectral } from "@/app/layout";
 interface Post {
   title: string;
   description: string;
@@ -64,12 +65,12 @@ return (
               <div className="p-4 flex flex-wrap h-full">
                 <Card className="rounded-md w-[460px] bg-brand-darkgreen h-full ">
 
-                    <div className="h-[250px] w-full p-1">
+                    <div className="h-[250px] w-full p-2">
                   <Image src={urlFor(blog.mainImage).url()}  width={300} height={300} alt='main image' className=" h-full w-full rounded-sm"></Image>
                   </div>
                   <CardContent className="px-4 flex flex-col justify-between gap-2">
-                  <span className="text-lg text-white">{blog.title}</span>
-                  <span className="font-semibold text-xs">Test Author</span>
+                  <span className={`text-lg text-[rgb(249,248,246)] ` + " "+ spectral.className}>{blog.title}</span>
+                  <span className="font-semibold text-xs text-[rgb(249,248,246)]">Test Author</span>
                   <Link href={`/blog/${blog.slug.current}`} ><button className="bg-white hover:bg-zinc-900 hover:text-white transition-all rounded-lg text-xs border-none p-2 w-fit">{blog.time} read </button></Link>
                   </CardContent>
                     

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Merriweather } from "next/font/google";
+import { Merriweather,Karla,Spectral,Lora } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
 import Navbar from "@/components/molecules/navbar";
@@ -10,6 +10,8 @@ import IG from "@/assests/icons/instagram.png"
 import X from  "@/assests/icons/twitter.png"
 
 const merriweather = Merriweather({subsets:["latin"],weight:['300','400','700']})
+const karla = Karla({subsets:["latin"]})
+export const spectral = Spectral({subsets:["latin"],weight:['600']})
 export const metadata: Metadata = {
   title: "Renivet",
   description: "Renivet - A innovative marketplace for sustainable brands",
@@ -26,7 +28,7 @@ export default function RootLayout({
       <Head>
         <link rel="icon" href="/icon.jpg" type="image/x-icon" />
       </Head>
-      <body className={merriweather.className}>
+      <body className={karla.className}>
 
       {children}
 

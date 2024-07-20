@@ -22,254 +22,254 @@ export const WomenComponents: { title: string; href: string; }[] =
 [
   {
     title: "New Arrivals",
-    href: "/shop-by-products/new-arrivals",
+    href: "/categories/new-arrivals",
   },
   {
     title: "Blazers & Coats",
-    href: "/shop-by-products/blazers-and-coats",
+    href: "/categories/blazers-and-coats",
   },
   {
     title: "Co-ordinates",
-    href: "/shop-by-products/co-ordinates",
+    href: "/categories/co-ordinates",
   },
   {
     title: "Dresses",
-    href: "/shop-by-products/dresses",
+    href: "/categories/dresses",
   },
   {
     title: "Dupattas",
-    href: "/shop-by-products/dupattas",
+    href: "/categories/dupattas",
   },
   {
     title: "Ethnic Wear",
-    href: "/shop-by-products/ethnic-wear",
+    href: "/categories/ethnic-wear",
   },
   {
     title: "Sweatshirts & Hoodies",
-    href: "/shop-by-products/sweatshirts-and-hoodies",
+    href: "/categories/sweatshirts-and-hoodies",
   },
   {
     title: "Jumpsuits",
-    href: "/shop-by-products/jumpsuits",
+    href: "/categories/jumpsuits",
   },
   {
     title: "Kaftaans",
-    href: "/shop-by-products/kaftaans",
+    href: "/categories/kaftaans",
   },
   {
     title: "Pants & Trousers",
-    href: "/shop-by-products/pants-and-trousers",
+    href: "/categories/pants-and-trousers",
   },
   {
     title: "Sarees",
-    href: "/shop-by-products/sarees",
+    href: "/categories/sarees",
   },
   {
     title: "Shirts",
-    href: "/shop-by-products/shirts",
+    href: "/categories/shirts",
   },
   {
     title: "Shorts & Skirts",
-    href: "/shop-by-products/shorts-and-skirts",
+    href: "/categories/shorts-and-skirts",
   },
   {
     title: "Shrugs",
-    href: "/shop-by-products/shrugs",
+    href: "/categories/shrugs",
   },
   {
     title: "Sports & Active Wear",
-    href: "/shop-by-products/sports-and-active-wear",
+    href: "/categories/sports-and-active-wear",
   },
   {
     title: "Jackets",
-    href: "/shop-by-products/jackets",
+    href: "/categories/jackets",
  },
   {
     title: "T-Shirts",
-    href: "/shop-by-products/t-shirts",
+    href: "/categories/t-shirts",
   },
   {
     title: "Tops",
-    href: "/shop-by-products/tops",
+    href: "/categories/tops",
   },
   {
     title: "Swimwear",
-    href: "/shop-by-products/swimwear",
+    href: "/categories/swimwear",
   }
 ] 
 export const MenComponents: { title: string; href: string; }[] = [
     {
       title: "Shirts",
-      href: "/shop-by-products/shirts",
+      href: "/categories/shirts",
     },
     {
       title: "T-Shirts",
-      href: "/shop-by-products/t-shirts",
+      href: "/categories/t-shirts",
     },
     {
       title: "Oversized T-Shirts",
-      href: "/shop-by-products/oversized-t-shirts",
+      href: "/categories/oversized-t-shirts",
     },
     {
       title: "Jackets",
-      href: "/shop-by-products/jackets",
+      href: "/categories/jackets",
     },
     {
       title: "Trousers",
-      href: "/shop-by-products/trousers",
+      href: "/categories/trousers",
     },
     {
       title: "Hoodies",
-      href: "/shop-by-products/hoodies",
+      href: "/categories/hoodies",
     },
     {
       title: "Blazers & Coats",
-      href: "/shop-by-products/blazers-and-coats",
+      href: "/categories/blazers-and-coats",
     },
     {
       title: "Shorts",
-      href: "/shop-by-products/shorts",
+      href: "/categories/shorts",
     },
     {
       title: "Co-ords",
-      href: "/shop-by-products/co-ords",
+      href: "/categories/co-ords",
     },
     {
       title: "Kurtas",
-      href: "/shop-by-products/kurtas",
+      href: "/categories/kurtas",
     },
     {
       title: "Sports & Active Wear",
-      href: "/shop-by-products/sports-and-active-wear",
+      href: "/categories/sports-and-active-wear",
     }
   ]
   export const KidsComponents: { title: string; href: string; }[] = [
     {
       title: "Twinning Sets",
-      href: "/shop-by-products/twinning-sets",
+      href: "/categories/twinning-sets",
     },
     {
       title: "Girls Clothing",
-      href: "/shop-by-products/girls-clothing",
+      href: "/categories/girls-clothing",
     },
     {
       title: "Boys Clothing",
-      href: "/shop-by-products/boys-clothing",
+      href: "/categories/boys-clothing",
     },
     {
       title: "Infants",
-      href: "/shop-by-products/infants",
+      href: "/categories/infants",
     },
     {
       title: "Caps",
-      href: "/shop-by-products/caps",
+      href: "/categories/caps",
     },
     {
       title: "Sleeping Suits/Bags",
-      href: "/shop-by-products/sleeping-suits-bags",
+      href: "/categories/sleeping-suits-bags",
     },
     {
       title: "Booties/Socks",
-      href: "/shop-by-products/booties-socks",
+      href: "/categories/booties-socks",
     },
     {
       title: "Gift Hampers",
-      href: "/shop-by-products/gift-hampers",
+      href: "/categories/gift-hampers",
     }
   ]
   export const AccessoriesComponents: { title: string; href: string; }[] = [
     {
       title: "New Arrivals",
-      href: "/shop-by-products/new-arrivals",
+      href: "/categories/new-arrivals",
     },
     {
       title: "Bags",
-      href: "/shop-by-products/bags",
+      href: "/categories/bags",
     },
     {
       title: "Tote Bags",
-      href: "/shop-by-products/tote-bags",
+      href: "/categories/tote-bags",
     },
     {
       title: "Sling Bags",
-      href: "/shop-by-products/sling-bags",
+      href: "/categories/sling-bags",
     },
     {
       title: "Handbags",
-      href: "/shop-by-products/handbags",
+      href: "/categories/handbags",
     },
     {
       title: "Laptop Sleeves",
-      href: "/shop-by-products/laptop-sleeves",
+      href: "/categories/laptop-sleeves",
     },
     {
       title: "Clutches",
-      href: "/shop-by-products/clutches",
+      href: "/categories/clutches",
     },
     {
       title: "Wallets",
-      href: "/shop-by-products/wallets",
+      href: "/categories/wallets",
     }
   ]
   export const HomeAndLivingComponents: { title: string; href: string; }[] = [
     {
       title: "Home Décor",
-      href: "/shop-by-products/home-decor",
+      href: "/categories/home-decor",
     },
     {
       title: "Blankets & Bedsheets",
-      href: "/shop-by-products/blankets-and-bedsheets",
+      href: "/categories/blankets-and-bedsheets",
     },
     {
       title: "Cushions & Pillows",
-      href: "/shop-by-products/cushions-and-pillows",
+      href: "/categories/cushions-and-pillows",
     },
     {
       title: "Floor Mats And Dhurries",
-      href: "/shop-by-products/floor-mats-and-dhurries",
+      href: "/categories/floor-mats-and-dhurries",
     },
     {
       title: "Office & Stationery",
-      href: "/shop-by-products/office-and-stationery",
+      href: "/categories/office-and-stationery",
     },
     {
       title: "Pooja Essentials",
-      href: "/shop-by-products/pooja-essentials",
+      href: "/categories/pooja-essentials",
     },
     {
       title: "Storage & Organisers",
-      href: "/shop-by-products/storage-and-organisers",
+      href: "/categories/storage-and-organisers",
     },
     {
       title: "Travel Essentials",
-      href: "/shop-by-products/travel-essentials",
+      href: "/categories/travel-essentials",
     }
   ]
 
   export const ShopAllComponents: { title: string; href: string; }[] = [
     {
       title: "Save Sustainably",
-      href: "/shop-by-products/save-sustainably",
+      href: "/categories/save-sustainably",
     },
     {
       title: "New Arrivals",
-      href: "/shop-by-products/new-arrivals",
+      href: "/categories/new-arrivals",
     },
     {
       title: "Shop by Craft",
-      href: "/shop-by-products/shop-by-craft",
+      href: "/categories/shop-by-craft",
     },
     {
       title: "Shop by Material",
-      href: "/shop-by-products/shop-by-material",
+      href: "/categories/shop-by-material",
     },
     {
       title: "Shop by Collection",
-      href: "/shop-by-products/shop-by-collection",
+      href: "/categories/shop-by-collection",
     },
     {
       title: "Shop By Brand",
-      href: "/shop-by-products/shop-by-brand",
+      href: "/categories/shop-by-brand",
     }
   ]
 
@@ -283,7 +283,7 @@ export function CategoriesNavbar() {
     <NavigationMenu className="">
       <NavigationMenuList className="py-1">
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Shop All</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="bg-brand-offwhite" >Shop All</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
@@ -318,7 +318,7 @@ export function CategoriesNavbar() {
 
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Women</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="bg-brand-offwhite">Women</NavigationMenuTrigger>
           <NavigationMenuContent className="mx-4">
             <ScrollArea className="h-[20rem] w-[50vw]">
             <ul className="grid gap-3 p-4 w-[50vw] md:grid-cols-2">
@@ -335,7 +335,7 @@ export function CategoriesNavbar() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Men</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="bg-brand-offwhite">Men</NavigationMenuTrigger>
           <NavigationMenuContent className="mx-4">
             <ScrollArea className="h-[20rem] w-[50vw]">
             <ul className="grid gap-3 p-4 w-[50vw] md:grid-cols-2">
@@ -352,7 +352,7 @@ export function CategoriesNavbar() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Kids</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="bg-brand-offwhite">Kids</NavigationMenuTrigger>
           <NavigationMenuContent className="mx-4">
             <ScrollArea className="h-64 w-[50vw]">
             <ul className="grid gap-3 p-4 w-[50vw] md:grid-cols-2">
@@ -369,7 +369,7 @@ export function CategoriesNavbar() {
           </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-          <NavigationMenuTrigger>Accessories</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="bg-brand-offwhite">Accessories</NavigationMenuTrigger>
           <NavigationMenuContent className="mx-4">
             <ScrollArea className="h-64 w-[50vw]">
             <ul className="grid gap-3 p-4 w-[50vw] md:grid-cols-2">
@@ -386,7 +386,7 @@ export function CategoriesNavbar() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Home and Living</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="bg-brand-offwhite">Home and Living</NavigationMenuTrigger>
           <NavigationMenuContent className="mx-4">
             <ScrollArea className="h-64 w-[50vw]">
             <ul className="grid gap-3 p-4 w-[50vw] md:grid-cols-2">
@@ -407,7 +407,7 @@ export function CategoriesNavbar() {
 
         <NavigationMenuItem>
           <Link href="/docs" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <NavigationMenuLink className="bg-brand-offwhite">
               <p className="text-red-600 font-semibold">Sale</p>
             </NavigationMenuLink>
           </Link>

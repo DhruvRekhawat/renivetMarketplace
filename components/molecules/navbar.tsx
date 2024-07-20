@@ -22,9 +22,9 @@ import Login from "./forms/userAuthLoginForm"
 const Navbar = () => {
   const [isOpen,setIsOpen] = useState(false)
   return (
-    <nav className="fixed w-full z-50 shadow-lg top-0">
+    <nav className="fixed w-full z-50 shadow-lg top-0 bg-brand-offwhite">
     <div className="bg-black text-white text-sm flex h-8 justify-center items-center w-full p-2">We Are Coming Soon <Heart className="text-white h-4"></Heart></div>
-    <div  className=" grid h-14 w-full grid-cols-3 px-4 md:px-16 bg-white place-items-center">
+    <div  className=" grid h-14 w-full grid-cols-3 px-4 md:px-16 bg-brand-offwhite place-items-center">
       
         
         <ul className="gap-4 text-md font-bold hover:cursor-pointer justify-self-start hidden md:flex text-sm  " >
@@ -75,7 +75,7 @@ const Navbar = () => {
         </div>
 
     </div>
-     <div className="w-screen fixed bg-white md:flex justify-center hidden shadow-md">   
+     <div className="w-screen fixed bg-brand-offwhite md:flex justify-center hidden shadow-md">   
        <CategoriesNavbar></CategoriesNavbar>
    </div>
 
