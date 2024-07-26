@@ -21,7 +21,7 @@ const ShopByCategories = () => {
         <Link href="/categories/t-shirts">
         <div className=" flex flex-col justify-center items-center gap-2 h-72 ">
         <Image src={CategoryImage2} alt="dress"></Image>
-        <p className=" underline leading-4  ">Men's Shirts</p>
+        <p className=" underline leading-4  ">Men&apos;s Shirts</p>
         </div>
         </Link>
         <Link href="/categories/twinning-set">

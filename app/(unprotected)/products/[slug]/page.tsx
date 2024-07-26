@@ -267,8 +267,8 @@ export default function ProductPage({params}:{params:{slug:string}}) {
                   </div>
                 </div>
                 <p>
-                  I've been experimenting with my LuminaCook Multi-Function Air Fryer for a few weeks now, and it's been
-                  a versatile addition to my kitchen. It's great for making crispy fries, chicken wings, and even some
+                  I&apos;ve been experimenting with my LuminaCook Multi-Function Air Fryer for a few weeks now, and it&apos;s been
+                  a versatile addition to my kitchen. It&apos;s great for making crispy fries, chicken wings, and even some
                   healthier options.
                 </p>
               </div>
@@ -292,9 +292,9 @@ export default function ProductPage({params}:{params:{slug:string}}) {
                 <p>
                   I recently purchased the SparkleShine Home Cleaning Robot, and it has been a game-changer in my life.
                   I used to spend hours every weekend cleaning my house, but now I can simply turn on this little robot
-                  and let it do the work. It's incredibly efficient, navigating around obstacles with ease. The only
-                  reason I didn't give it a perfect 5-star rating is that it occasionally gets stuck under low
-                  furniture. Overall, it's been a great addition to my home, saving me time and effort.
+                  and let it do the work. It&apos;s incredibly efficient, navigating around obstacles with ease. The only
+                  reason I didn&apos;t give it a perfect 5-star rating is that it occasionally gets stuck under low
+                  furniture. Overall, it&apos;s been a great addition to my home, saving me time and effort.
                 </p>
               </div>
             </div>
