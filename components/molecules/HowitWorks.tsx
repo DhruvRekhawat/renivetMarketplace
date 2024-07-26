@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import Image from 'next/image'
-import { spectral } from '@/app/layout'
+import { spectral } from '@/app/fonts'
 import Icon1 from "@/assests/icons/carbon-footprint.png"
 import Icon2 from "@/assests/icons/eco-friendly-fabric.png"
 import Icon3 from "@/assests/icons/ethical.png"
