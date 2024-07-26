@@ -9,7 +9,7 @@ import { Card, CardContent } from "../ui/card"
 import {client,urlFor} from '@/sanity/lib/client'  
 import Image from "next/image"
 import Link from "next/link";
-import { spectral } from "@/app/layout";
+import { spectral } from "@/app/fontslayout";
 interface Post {
   title: string;
   description: string;

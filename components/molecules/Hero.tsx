@@ -2,7 +2,7 @@ import Image from "next/image"
 import Image1 from"@/assests/drew-dizzy-graham-cTKGZJTMJQU-unsplash.jpg"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { spectral } from "@/app/layout"
+import { spectral } from "@/app/fonts"
 const Hero = () => {
     // const FADE_UP_ANIMATION_VARIANTS = {
     //     hidden: { opacity: 0, y: 10 },

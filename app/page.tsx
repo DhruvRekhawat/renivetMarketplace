@@ -18,7 +18,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { spectral } from "./layout";
+import { spectral } from "./fonts";
 import ShopByCategories from "@/components/molecules/shopByCategories";
 
 export default function Home() {

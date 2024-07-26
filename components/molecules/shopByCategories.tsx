@@ -5,7 +5,7 @@ import CategoryImage3 from '@/assests/vanessa-serpas-e6lWMBIgNso-unsplash.jpg'
 import CategoryImage4 from '@/assests/marissa-grootes-D4jRahaUaIc-unsplash.jpg'
 import CategoryImage5 from '@/assests/hutomo-abrianto-nPdsMgvL9QM-unsplash.jpg'
 import Link from "next/link"
-import { spectral } from "@/app/layout";
+import { spectral } from "@/app/fonts";
 
 const ShopByCategories = () => {
   return (

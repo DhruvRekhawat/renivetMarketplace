@@ -11,7 +11,7 @@ import X from  "@/assests/icons/twitter.png"
 
 const merriweather = Merriweather({subsets:["latin"],weight:['300','400','700']})
 const karla = Karla({subsets:["latin"]})
-export const spectral = Spectral({subsets:["latin"],weight:['600']})
+const spectral = Spectral({subsets:["latin"],weight:['600']})
 export const metadata: Metadata = {
   title: "Renivet",
   description: "Renivet - A innovative marketplace for sustainable brands",
