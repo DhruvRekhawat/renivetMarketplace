@@ -9,7 +9,7 @@ import { ColumnDef } from "@tanstack/react-table"
 export type Payment = {
   id: string
   amount: number
-  status: "Pending" | "processing" | "success" | "failed"
+  status: "pending" | "processing" | "success" | "failed"
   email: string
 }
 
