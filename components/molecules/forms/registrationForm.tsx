@@ -14,7 +14,10 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
-import { registerBrand } from "@/actions/register.action"
+import SubmitButton from "./submit-button"
+import { useState } from "react"
+import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
 const formSchema = z.object({
   email: z.string().email().min(2, {
@@ -33,6 +36,12 @@ const formSchema = z.object({
 });
 
 export default function RegisterationForm() {
+
+   const router = useRouter()
+
+
+    const [message,setMessage] = useState('')
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -46,12 +55,35 @@ export default function RegisterationForm() {
       async function onSubmit(values: z.infer<typeof formSchema>) {
             if(values.password===values.confirmPassword){
               console.log(values)
+              try {
+                const response = await fetch("/api/register-brand", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(values),
+                });
+          
+                const result = await response.json();
+                toast.success(result.message)
+
+                if (result.message === "Registration successful"){
+                  console.log('match')
+                  router.push('/brand')
+                }
+
+
+              }
+              catch(error){
+                console.log(error);
+              }
             }
+
       }
 
   return (
     <Form {...form}>
-      <form action={registerBrand} className="space-y-2">
+      <form onSubmit={form.handleSubmit(onSubmit)}className="space-y-2">
         
         <FormField
           control={form.control}
@@ -95,7 +127,8 @@ export default function RegisterationForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className=" text-brand-offwhite w-full"> Register </Button>
+        {/* <Button type="submit" className=" text-brand-offwhite w-full"> Register </Button> */}
+        <SubmitButton></SubmitButton>
         <p>Already Have An Account? <Link href="/brand" className="text-brand-brown underline">Login</Link></p>
       </form>
     </Form>

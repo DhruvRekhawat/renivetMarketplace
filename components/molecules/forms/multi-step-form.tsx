@@ -3,19 +3,21 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
-import { z } from 'zod'
+import { literal, z } from 'zod'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler} from 'react-hook-form'
+import prisma from '@/lib/db'
 
 
 export const FormDataSchema =z.object({
     // Basic Information
     brandName: z.string().min(2, { message: "Brand name must be at least 2 characters." }) ,
-    fullName: z.string().min(2, { message: "Contact name must be at least 2 characters." }) ,
+    contactName: z.string().min(2, { message: "Contact name must be at least 2 characters." }) ,
     email: z.string().email({ message: "Invalid email address." }) ,
     phoneNumber: z.string().min(10, { message: "Phone number must be at least 10 characters." }) ,
-    websiteUrl: z.string().url({ message: "Invalid URL." }).optional(),
+    websiteUrl: z.string().url({ message: "Invalid URL." }).optional().or(literal("")),
+
   
     // Business Information
     businessType: z.enum(["Sole_Proprietorship", "Partnership", "Corporation", "LLC", "Other"], {
@@ -25,7 +27,7 @@ export const FormDataSchema =z.object({
     businessCountryOfRegistration: z.string().min(2, { message: "businessType of registration is required." }) ,
   
     // Tax Information
-    gstNumber: z.string().min(1, { message: "GST number is required." }).optional(),
+    gstNumber: z.string().min(1, { message: "GST number is required." }).optional().or(literal("")),
   
     // Product Information
     productDescription: z.string().min(10, { message: "Product description must be at least 10 characters." }) ,
@@ -34,18 +36,18 @@ export const FormDataSchema =z.object({
     materials: z.string().min(2, { message: "Please specify materials used." }) ,
   
     // Sustainability
-    sustainabilityCertifications: z.array(z.string()).optional(),
-    unSdgs: z.array(z.string()).optional(),
+    sustainabilityCertifications: z.array(z.string()).optional().or(literal(undefined)),
+    unSdgs: z.array(z.string()).optional().or(literal(undefined)),
   
     // Brand Story
     // brandStory: z.string().min(50, { message: "Brand story must be at least 50 characters." }),
   
     // Social Media
     socialMedia: z.object({
-      facebook: z.string().url({ message: "Invalid Facebook URL." }).optional(),
-      instagram: z.string().url({ message: "Invalid Instagram URL." }).optional(),
-      twitter: z.string().url({ message: "Invalid Twitter URL." }).optional(),
-    }).optional(),
+      facebook: z.string().url({ message: "Invalid Facebook URL." }).optional().or(literal("")),
+      instagram: z.string().url({ message: "Invalid Instagram URL." }).optional().or(literal("")),
+      twitter: z.string().url({ message: "Invalid Twitter URL." }).optional().or(literal("")),
+    }).optional().or(literal(null)),
   
     // Manufacturing and Supply Chain
     totalProductionPerYear: z.number().positive({ message: "Production must be a positive number." }).optional(),
@@ -160,9 +162,20 @@ export default function Form() {
   };
 
 
-  const processForm: SubmitHandler<Inputs> = data => {
-    console.log(data)
-    reset()
+  const processForm: SubmitHandler<Inputs> = async(data) => {
+    try{
+      fetch('/api/create-brand',{
+        method:"POST",
+        body:JSON.stringify(data)
+      })
+    }
+    catch(error){
+      console.log(error)
+    }
+    finally{
+      reset()
+    }
+    
   }
 
   type FieldName = keyof Inputs
@@ -244,7 +257,7 @@ export default function Form() {
             {/* full name */}
             <div className='sm:col-span-4'>
                 <label
-                  htmlFor='fullName'
+                  htmlFor='contactName'
                   className='block text-sm font-medium leading-6 text-gray-900'
                 >
                   Full Name
@@ -252,14 +265,14 @@ export default function Form() {
                 <div className='mt-2'>
                   <input
                     type='text'
-                    id='fullName'
-                    {...register('fullName')}
+                    id='contactName'
+                    {...register('contactName')}
                     autoComplete='family-name'
                     className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
-                  {errors.fullName?.message && (
+                  {errors.contactName?.message && (
                     <p className='mt-2 text-sm text-red-400'>
-                      {errors.fullName.message}
+                      {errors.contactName?.message}
                     </p>
                   )}
                 </div>
@@ -299,7 +312,8 @@ export default function Form() {
                 <div className='mt-2'>
                   <input
                     id='phoneNumber'
-                    type='phoneNumber'
+                    type='tel'
+                    maxLength={10}
                     {...register('phoneNumber')}
                     autoComplete='phoneNumber'
                     className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
@@ -495,7 +509,7 @@ export default function Form() {
                   )}
                 </div>
               </div>
-              
+              {/* TO DO: Make countries dropdown */}
               <div className='sm:col-span-2 sm:col-start-1'>
                 <label
                   htmlFor='businessCountryOfRegistration'
@@ -591,45 +605,46 @@ export default function Form() {
           Categories
         </label>
         <div className='mt-2'>
+          
           <div className='flex justify-start items-center gap-1'>
             <input
               type='checkbox'
-              id='Fairtrade'
-              onChange={() => handleCheckboxChange('categories', 'Fairtrade')}
+              id='Mens'
+              onChange={() => handleCheckboxChange('categories', 'Mens')}
             />
-            <p>Fairtrade</p>
+            <p>Men&apos;s Clothing</p>
           </div>
           <div className='flex justify-start items-center gap-1'>
             <input
               type='checkbox'
-              id='GOTS'
-              onChange={() => handleCheckboxChange('categories', 'GOTS')}
+              id='Womens'
+              onChange={() => handleCheckboxChange('categories', 'Womens')}
             />
-            <p>GOTS</p>
+            <p>Women&apos;s Clothing </p>
           </div>
           <div className='flex justify-start items-center gap-1'>
             <input
               type='checkbox'
-              id='FSC'
-              onChange={() => handleCheckboxChange('categories', 'FSC')}
+              id='Kids'
+              onChange={() => handleCheckboxChange('categories', 'Kids')}
             />
-            <p>FSC</p>
+            <p>Kid&apos; Fashion</p>
           </div>
           <div className='flex justify-start items-center gap-1'>
             <input
               type='checkbox'
-              id='USDA Organic'
-              onChange={() => handleCheckboxChange('categories', 'USDA Organic')}
+              id='HomeAndDecor'
+              onChange={() => handleCheckboxChange('categories', 'HomeAndDecor')}
             />
-            <p>USDA Organic</p>
+            <p>Home and Living</p>
           </div>
           <div className='flex justify-start items-center gap-1'>
             <input
               type='checkbox'
-              id='AnimalTesting'
-              onChange={() => handleCheckboxChange('categories', 'Animal Testing')}
+              id='Accessories'
+              onChange={() => handleCheckboxChange('categories', 'Accessories')}
             />
-            <p>Animal Testing (Does your brand test on animals?)</p>
+            <p>Accessories</p>
           </div>
           {errors.categories?.message && (
             <p className='mt-2 text-sm text-red-400'>
@@ -998,7 +1013,7 @@ export default function Form() {
           {currentStep === 4 && (
           <>
             <h2 className='text-base font-semibold leading-7 text-gray-900'>
-              Complete
+              Thank you for filling the form! We will get back to you soon
             </h2>
         
             <p className='mt-1 text-sm leading-6 text-gray-600'>
@@ -1034,7 +1049,7 @@ export default function Form() {
             Back
           </button>
           <button
-            type='button'
+            type='submit'
             onClick={next}
             disabled={currentStep === steps.length - 1}
             className='rounded bg-white px-2 py-1 text-sm font-semibold text-brand-brown shadow-sm ring-1 ring-inset ring-brand-brown/85 hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-50 flex justify-center items-center'

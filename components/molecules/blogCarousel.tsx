@@ -43,14 +43,12 @@ async function getData() {
       mainImage,
     }`,
    );
-  console.log(data.length)
   return data
 }
 
 
 const BlogCarousel = async() => {
 const blogData:Post[] = await getData();
-console.log(blogData)
 return (
 
       <Carousel

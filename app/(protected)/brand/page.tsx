@@ -1,11 +1,39 @@
+"use client"
+
+
 import Image from "next/image"
 import Link from "next/link"
 import LoginImage from '@/assests/brownrose.jpg'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { login } from "@/actions/loginBrand.action"
+import { login } from "@/actions/login.action"
+import { useFormState } from "react-dom"
+import { toast } from "sonner"
+import { useRouter } from "next/navigation"
+
+
+const initialState = {
+  type: '',
+  message: '',
+  errors: null,
+};
+
+
 function BrandLogin() {
+  
+  const router = useRouter();
+  const [state, formAction] = useFormState<any>(login as any, initialState);
+
+  if (state?.type === 'success') {
+    toast.success(state.message);
+    router.push(`/brand/${state.email}/home`);
+  }
+
+  if (state?.type === 'error') {
+    toast.error(state.message);
+  }
+
   return (
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
       <div className="flex items-center justify-center py-12">
@@ -16,7 +44,7 @@ function BrandLogin() {
               Enter your email and password to login to your account
             </p>
           </div>
-          <form action={login}>
+          <form action={formAction}>
           <div className="grid gap-4">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
@@ -51,7 +79,7 @@ function BrandLogin() {
           </form>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="underline">
+            <Link href="/#becomeapartner" className="underline">
               Sign up
             </Link>
           </div>

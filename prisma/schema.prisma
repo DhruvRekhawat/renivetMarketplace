@@ -59,19 +59,21 @@ model Brand {
   email                          String     @unique
   password                       String
   phoneNumber                    String
-  websiteUrl                     String? // Optional
+  websiteUrl                     String? 
   products                       Product[]
   businessType                   BusinessType
   businessRegistrationNumber     String
   countryOfRegistration          String
-  gstNumber                      String
+  gstNumber                      String?
   productDescription             String
   categories                     String[]
   materials                      String
   sustainabilityCertifications   String[]
   unSdgs                         String[]
   brandStory                     String?
-  socialMedia                    String?
+  socialMedia_facebook           String?
+  socialMedia_instagram          String?
+  socialMedia_twitter            String?
   totalProductionPerYear         Float?
   numberOfSuppliers              Int?
   supplyChainDescription         String?
@@ -88,12 +90,6 @@ model Brand {
   updatedAt                      DateTime   @updatedAt
   status                         Status
 }
-
-
-
-
-
-
 
 model Order {
   id          Int         @id @default(autoincrement())

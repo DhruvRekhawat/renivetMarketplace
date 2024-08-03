@@ -8,6 +8,7 @@ import Image from "next/image";
 import FB from "@/assests/icons/facebook.png"
 import IG from "@/assests/icons/instagram.png"
 import X from  "@/assests/icons/twitter.png"
+import { Toaster } from "@/components/ui/sonner";
 
 const merriweather = Merriweather({subsets:["latin"],weight:['300','400','700']})
 const karla = Karla({subsets:["latin"]})
@@ -33,6 +34,7 @@ export default function RootLayout({
       {children}
 
         <SpeedInsights></SpeedInsights>
+        <Toaster></Toaster>
       </body>
     </html>
   );
