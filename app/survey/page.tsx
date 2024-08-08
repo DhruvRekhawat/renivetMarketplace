@@ -13,7 +13,7 @@ import BG from '@/assests/thom-milkovic-cBS0qKJM-P4-unsplash.jpg'
 import { Banknote, Bike, Briefcase, Gem, Glasses, HandCoins, Heart, Landmark, PartyPopper, PiggyBank, Shirt, Trees, Wallet } from 'lucide-react'
 import { toast } from 'sonner'
 
-export const SurveySchema = z.object({
+const SurveySchema = z.object({
   // Demographics
   name: z.string().min(1, { message: "Name is required" }),
   mobile: z.string().min(10, { message: "Mobile number must be at least 10 digits" }),
