@@ -12,6 +12,7 @@ import Image from 'next/image'
 import BG from '@/assests/thom-milkovic-cBS0qKJM-P4-unsplash.jpg'
 import { Banknote, Bike, Briefcase, Gem, Glasses, HandCoins, Heart, Landmark, PartyPopper, PiggyBank, Shirt, Trees, Wallet } from 'lucide-react'
 import { toast } from 'sonner'
+import { redirect } from 'next/navigation'
 
 const SurveySchema = z.object({
   // Demographics
@@ -239,8 +240,10 @@ export default function Form() {
         method:"POST",
         body:JSON.stringify(data)
       })
-      toast.success('Thank you for participating in our survey!')
-      setCurrentStep(0)
+      toast.success('Thank you for participating in our survey!',{
+        duration:1000,
+      })
+      redirect('/')
     }
     catch(error){
       console.log(error)
@@ -551,10 +554,10 @@ export default function Form() {
     transition={{ duration: 0.3, ease: 'easeInOut' }}
   >
     <h2 className='text-base font-semibold leading-7 text-gray-900'>
-    What factors influence your clothing purchasing decisions? [Select all that apply]
+    What factors influence your clothing purchasing decisions? 
     </h2>
     <p className='mt-1 text-sm leading-6 text-gray-600'>
-      Select the appropriate option
+    Select all that apply
     </p>
     <div className='mt-10 grid grid-cols-1 gap-x-2 gap-y-2 sm:grid-cols-10 '>
       
@@ -673,10 +676,10 @@ export default function Form() {
     transition={{ duration: 0.3, ease: 'easeInOut' }}
   >
     <h2 className='text-base font-semibold leading-7 text-gray-900'>
-      What features do you value when shopping online? [Select all that apply]
+      What features do you value when shopping online? 
     </h2>
     <p className='mt-1 text-sm leading-6 text-gray-600'>
-      Select the appropriate options
+    Select all that apply
     </p>
     <div className='mt-10 grid grid-cols-1 gap-x-2 gap-y-2 sm:grid-cols-10'>
       {[
