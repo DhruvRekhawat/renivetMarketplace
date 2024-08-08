@@ -12,7 +12,7 @@ import Image from 'next/image'
 import BG from '@/assests/thom-milkovic-cBS0qKJM-P4-unsplash.jpg'
 import { Banknote, Bike, Briefcase, Gem, Glasses, HandCoins, Heart, Landmark, PartyPopper, PiggyBank, Shirt, Trees, Wallet } from 'lucide-react'
 import { toast } from 'sonner'
-import { redirect } from 'next/navigation'
+import { useRouter} from 'next/navigation'
 
 const SurveySchema = z.object({
   // Demographics
@@ -205,6 +205,7 @@ export default function Form() {
   const [previousStep, setPreviousStep] = useState(0)
   const [currentStep, setCurrentStep] = useState(0)
   const delta = currentStep - previousStep
+  const router = useRouter();
 
   const {
     register,
@@ -243,7 +244,8 @@ export default function Form() {
       toast.success('Thank you for participating in our survey!',{
         duration:1000,
       })
-      redirect('/')
+      router.push('/')
+      
     }
     catch(error){
       console.log(error)
@@ -371,7 +373,7 @@ export default function Form() {
         </label>
         <div className='mt-2'>
           <input
-            type='text'
+            type='date'
             id='dob'
             {...register('dob')}
             placeholder='YYYY-MM-DD'
@@ -628,7 +630,7 @@ export default function Form() {
             className='hidden peer'
           />
           <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44'>
-            <p>{budget}</p>
+            <p className='text-center w-full'>{budget}</p>
           </Card>
         </label>
       ))}
@@ -662,7 +664,7 @@ export default function Form() {
             className='hidden peer'
           />
           <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44'>
-            <p>{frequency}</p>
+            <p className='w-full text-center'>{frequency}</p>
           </Card>
         </label>
       ))}
@@ -697,7 +699,7 @@ export default function Form() {
             className='hidden peer'
           />
           <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44'>
-            <p>{feature}</p>
+            <p className='w-full text-center'>{feature}</p>
           </Card>
         </label>
       ))}
@@ -810,7 +812,7 @@ export default function Form() {
             className='hidden peer'
           />
           <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44'>
-            <p>{encouragement}</p>
+            <p className='w-full text-center'>{encouragement}</p>
           </Card>
         </label>
       ))}
