@@ -282,7 +282,7 @@ export default function Form() {
   }
 
   return (
-    <section className='absolute inset-0 flex flex-col justify-between items-center p-4 md:p-8'>
+    <section className='absolute inset-0 flex flex-col justify-between items-center p-4 md:p-8 h-[100dvh]'>
       {/* steps */}
       <Image src={BG} objectFit='cover' className='-z-10 aspect-auto top-0 fixed w-full h-[175vh] sm:h-auto' alt='bg'></Image>
       <Card className='p-8 rounded-sm sm:w-2/3 w-full'>
@@ -334,6 +334,7 @@ export default function Form() {
             id='mobile'
             {...register('mobile')}
             className='block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+            max={10}
           />
           {errors.mobile?.message && (
             <p className='mt-2 text-sm text-red-400'>{errors.mobile?.message}</p>
