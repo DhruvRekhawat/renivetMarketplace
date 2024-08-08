@@ -772,7 +772,7 @@ export default function Form() {
             className='hidden peer'
           />
           <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44'>
-            <p>{barrier}</p>
+            <p className='w-full text-center'>{barrier}</p>
           </Card>
         </label>
       ))}
