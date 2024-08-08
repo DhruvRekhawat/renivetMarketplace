@@ -757,7 +757,6 @@ export default function Form() {
         "Concerns about product quality",
         "Difficulty finding information about sustainability",
         "Lack of trust in sustainability claims",
-        "Other"
       ].map((barrier) => (
         <label key={barrier} className='sm:col-span-2 cursor-pointer'>
           <input
@@ -799,7 +798,6 @@ export default function Form() {
         "Clearer information about sustainability practices",
         "Celebrity endorsements or influencer recommendations",
         "Discounts or promotions",
-        "Other"
       ].map((encouragement) => (
         <label key={encouragement} className='sm:col-span-2 cursor-pointer'>
           <input
