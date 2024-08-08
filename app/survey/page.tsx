@@ -728,7 +728,7 @@ export default function Form() {
           <option value="Definitely not">Definitely not</option>
           <option value="Maybe, depending on the product">Maybe, depending on the product</option>
           <option value="Yes, if the product is high quality">Yes, if the product is high quality</option>
-          <option value="Yes, I'm willing to pay significantly more">Yes, I'm willing to pay significantly more</option>
+          <option value="Yes, I'm willing to pay significantly more">Yes, I&apos;m willing to pay significantly more</option>
         </select>
         {errors.sustainablePremium && <p className='text-red-500'>{errors.sustainablePremium.message}</p>}
       </label>
