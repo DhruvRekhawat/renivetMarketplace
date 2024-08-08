@@ -286,7 +286,7 @@ export default function Form() {
     <section className='absolute inset-0 flex flex-col justify-between items-center p-4 md:p-8 h-[100dvh]'>
       {/* steps */}
       <Image src={BG} objectFit='cover' className='-z-10 aspect-auto top-0 fixed w-full h-[175vh] sm:h-auto' alt='bg'></Image>
-      <Card className='px-4 py-6 pb-2 md:p-8 rounded-sm sm:w-2/3 w-full'>
+      <Card className='px-4 py-6 pb-2 md:p-8 rounded-sm sm:w-2/3 w-full flex-grow'>
       
 
       {/* Form */}
