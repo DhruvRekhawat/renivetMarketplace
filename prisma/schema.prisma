@@ -176,3 +176,28 @@ enum Status{
   APPROVED
   REMOVED
 }
+
+
+model SurveyResponse {
+  id                            Int      @id @default(autoincrement())
+  name                          String
+  mobile                        String   
+  email                         String   
+  dob                           String
+  gender                        String
+  occupation                    String
+  annualIncome                  String
+  clothingStyle                 String
+  purchaseFactors               String[] // Store as a list of strings
+  typicalBudget                 String
+  purchaseFrequency             String
+  onlineShoppingFeatures       String[] // Store as a list of strings
+  certificationImportance       String
+  sustainablePremium            String
+  sustainabilityBarriers         String[] // Store as a list of strings
+  otherSustainabilityBarrier     String?
+  sustainabilityEncouragements  String[] // Store as a list of strings
+  otherSustainabilityEncouragement String?
+  
+  @@map("survey_responses") // Optional: if you want to map to a specific table name
+}
