@@ -441,40 +441,40 @@ export default function Form() {
       
       < label className='sm:col-span-2'>
         <input type="radio" id='Less than 5 Lakh' value="Less than 5 Lakh" {...register("annualIncome")}  className='hidden peer'/>
-        <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44 '>
-        <HandCoins className='h-8 w-8 font-light'></HandCoins>
+        <Card className='flex md:flex-col gap-x-2 p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
+        <HandCoins className='h-5 w-5 font-light'></HandCoins>
         <p>Less Than 5 Lakh</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
         <input type="radio" id='5 - 10 Lakh' value="5 - 10 Lakh" {...register("annualIncome")} className='hidden peer' />
-        <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44 '>
-        <Wallet className='h-8 w-8 font-light'></Wallet>
+        <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
+        <Wallet className='h-5 w-5 font-light'></Wallet>
         <p>5 - 10 Lakh</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
         <input type="radio" id='10 - 20 Lakh' value="10 - 20 Lakh" {...register("annualIncome")} className='hidden peer' />
-        <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44 '>
-        <PiggyBank className='h-8 w-8 font-light'></PiggyBank>
+        <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
+        <PiggyBank className='h-5 w-5 font-light'></PiggyBank>
         <p>10 - 20 Lakh</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
         <input type="radio" id='20 - 30 Lakh' value="20 - 30 Lakh" {...register("annualIncome")} className='hidden peer' />
-        <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44 '>
-        <Banknote className='h-8 w-8 font-light'></Banknote>
+        <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
+        <Banknote className='h-5 w-5 font-light'></Banknote>
         <p>20 - 30 Lakh</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
         <input type="radio" id='More than 30 Lakh' value="More than 30 Lakh" {...register("annualIncome")} className='hidden peer' />
-        <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44 '>
-        <Landmark className='h-8 w-8 font-light'></Landmark>
+        <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
+        <Landmark className='h-5 w-5 font-light'></Landmark>
         <p>More than 30 Lakh</p>
         </Card>
         
@@ -500,40 +500,40 @@ export default function Form() {
       
       < label className='sm:col-span-2'>
         <input type="radio" id='Formal' value="Formal" {...register("clothingStyle")}  className='hidden peer'/>
-        <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44 '>
-        <Briefcase className='h-8 w-8 font-light'></Briefcase>
+        <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
+        <Briefcase className='h-5 w-5 font-light'></Briefcase>
         <p>Formal</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
         <input type="radio" id='Casual' value="Casual" {...register("clothingStyle")} className='hidden peer' />
-        <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44 '>
-        <Shirt className='h-8 w-8 font-light'></Shirt>
+        <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
+        <Shirt className='h-5 w-5 font-light'></Shirt>
         <p>Casual</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
         <input type="radio" id='Party wear' value="Party wear" {...register("clothingStyle")} className='hidden peer' />
-        <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44 '>
-        <PartyPopper className='h-8 w-8 font-light'></PartyPopper>
+        <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
+        <PartyPopper className='h-5 w-5 font-light'></PartyPopper>
         <p>Party wear</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
         <input type="radio" id='Activewear' value="Activewear" {...register("clothingStyle")} className='hidden peer' />
-        <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44 '>
-        <Bike className='h-8 w-8 font-light'></Bike>
+        <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
+        <Bike className='h-5 w-5 font-light'></Bike>
         <p>Activewear</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
         <input type="radio" id='A mix of styles' value="A mix of styles" {...register("clothingStyle")} className='hidden peer' />
-        <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44 '>
-        <Heart className='h-8 w-8 font-light'></Heart>
+        <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
+        <Heart className='h-5 w-5 font-light'></Heart>
         <p>A mix of styles</p>
         </Card>
         
@@ -559,40 +559,40 @@ export default function Form() {
       
       < label className='sm:col-span-2'>
         <input type="checkbox" id='Formal' value="Formal" onChange={() => handleCheckboxChange('purchaseFactors', 'Price')}  className='hidden peer'/>
-        <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44 '>
-        <Banknote className='h-8 w-8 font-light'></Banknote>
+        <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
+        <Banknote className='h-5 w-5 font-light'></Banknote>
         <p>Price</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
         <input type="checkbox" id='Casual' value="Casual" onChange={() => handleCheckboxChange('purchaseFactors', 'Brand')} className='hidden peer' />
-        <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44 '>
-        <Shirt className='h-8 w-8 font-light'></Shirt>
+        <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
+        <Shirt className='h-5 w-5 font-light'></Shirt>
         <p>Brand</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
         <input type="checkbox" id='Party wear' value="Party wear" onChange={() => handleCheckboxChange('purchaseFactors', 'Quality')} className='hidden peer' />
-        <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44 '>
-        <Gem className='h-8 w-8 font-light'></Gem>
+        <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
+        <Gem className='h-5 w-5 font-light'></Gem>
         <p>Quality</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
         <input type="checkbox" id='Activewear' value="Activewear" onChange={() => handleCheckboxChange('purchaseFactors', 'Sustainability')} className='hidden peer' />
-        <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44 '>
-        <Trees className='h-8 w-8 font-light'></Trees>
+        <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
+        <Trees className='h-5 w-5 font-light'></Trees>
         <p>Sustainability</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
         <input type="checkbox" id='A mix of styles' value="A mix of styles" onChange={() => handleCheckboxChange('purchaseFactors', 'Style')} className='hidden peer' />
-        <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44 '>
-        <Glasses className='h-8 w-8 font-light'></Glasses>
+        <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
+        <Glasses className='h-5 w-5 font-light'></Glasses>
         <p>Style</p>
         </Card>
         
@@ -623,7 +623,7 @@ export default function Form() {
             {...register("typicalBudget")}
             className='hidden peer'
           />
-          <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44'>
+          <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44'>
             <p>{budget}</p>
           </Card>
         </label>
@@ -657,7 +657,7 @@ export default function Form() {
             {...register("purchaseFrequency")}
             className='hidden peer'
           />
-          <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44'>
+          <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44'>
             <p>{frequency}</p>
           </Card>
         </label>
@@ -692,7 +692,7 @@ export default function Form() {
             {...register("onlineShoppingFeatures")}
             className='hidden peer'
           />
-          <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44'>
+          <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44'>
             <p>{feature}</p>
           </Card>
         </label>
@@ -765,7 +765,7 @@ export default function Form() {
             {...register("sustainabilityBarriers")}
             className='hidden peer'
           />
-          <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44'>
+          <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44'>
             <p>{barrier}</p>
           </Card>
         </label>
@@ -807,7 +807,7 @@ export default function Form() {
             {...register("sustainabilityEncouragements")}
             className='hidden peer'
           />
-          <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-36 sm:h-44'>
+          <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44'>
             <p>{encouragement}</p>
           </Card>
         </label>
