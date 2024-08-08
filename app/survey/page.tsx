@@ -282,10 +282,10 @@ export default function Form() {
   }
 
   return (
-    <section className='absolute inset-0 flex flex-col justify-between items-center p-2 sm:p-8'>
+    <section className='absolute inset-0 flex flex-col justify-between items-center p-2 md:p-8'>
       {/* steps */}
       <Image src={BG} objectFit='cover' className='-z-10 aspect-auto top-0 fixed w-full h-screen sm:h-auto' alt='bg'></Image>
-      <Card className='p-8 rounded-sm w-2/3'>
+      <Card className='p-2 md:p-8 rounded-sm w-2/3'>
       
 
       {/* Form */}
