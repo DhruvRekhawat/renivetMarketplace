@@ -32,7 +32,7 @@ const Navbar = () => {
             <Link href='#subscribe' className = "hover:-translate-y-0.5 transition-all"><li>Subscribe</li></Link>
             <Link href='#contact' className = "hover:-translate-y-0.5 transition-all"><li>Contact</li></Link>
         </ul>
-        <Image src={Logo} alt="logo" height={20} className=""></Image>
+        <Link href="/"><Image src={Logo} alt="logo" height={20} className=""></Image></Link>
         <ul className="gap-8 text-md font-bold hover:cursor-pointer justify-self-end hidden md:flex text-sm " >
             <Link href='#howitworks' className = "hover:-translate-y-0.5 transition-all hover:bg-zinc-100 p-1 rounded-md"><Search className=""></Search></Link>
             <HoverCard>
@@ -76,7 +76,7 @@ const Navbar = () => {
 
     </div>
      <div className="w-screen fixed bg-brand-offwhite md:flex justify-center hidden shadow-md">   
-       <CategoriesNavbar></CategoriesNavbar>
+       {/* <CategoriesNavbar></CategoriesNavbar> */}
    </div>
 
     </nav>
