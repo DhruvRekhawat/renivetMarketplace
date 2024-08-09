@@ -33,11 +33,11 @@ export default function Home() {
 
         <ShopByCategories></ShopByCategories>
         <HowitWorks></HowitWorks>
-        <section className="flex flex-col space-y-4 w-full md:p-8 p-2 bg-brand-offwhite">
+        {/* <section className="flex flex-col space-y-4 w-full md:p-8 p-2 bg-brand-offwhite">
           <h1 className={`text-start text-4xl  mt-16` + " "+(spectral.className)}>Latest Stories</h1>
           <h3><Link href="/blogs"><u>View all</u></Link></h3>
           <BlogCarousel></BlogCarousel>
-        </section>
+        </section> */}
         <JointheCommunity></JointheCommunity>
         <section className=" bg-brand-offwhite py-8" id="becomeapartner" >
           <h1 className={`text-4xl  text-center my-2`+ " "+ spectral.className}>Become a Partner</h1>

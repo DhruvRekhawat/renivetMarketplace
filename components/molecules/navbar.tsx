@@ -23,7 +23,7 @@ const Navbar = () => {
   const [isOpen,setIsOpen] = useState(false)
   return (
     <nav className="fixed w-full z-50 shadow-lg top-0 bg-brand-offwhite">
-    <div className="bg-black text-white text-sm flex h-8 justify-center items-center w-full p-2">We Are Coming Soon <Heart className="text-white h-4"></Heart></div>
+    <div className="bg-black text-white text-md flex h-10 justify-center items-center w-full p-2">We Are Coming Soon <Heart className="text-white h-4"></Heart></div>
     <div  className=" grid h-14 w-full grid-cols-3 px-4 md:px-16 bg-brand-offwhite place-items-center">
       
         

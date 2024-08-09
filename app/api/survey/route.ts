@@ -20,13 +20,13 @@ const surveySchema = z.object({
     "20 - 30 Lakh",
     "More than 30 Lakh"
   ], { errorMap: () => ({ message: "Please select a valid income range" }) }),
-  clothingStyle: z.enum([
+  clothingStyle: z.array(z.enum([
     "Formal",
     "Casual",
     "Party wear",
     "Activewear",
     "A mix of styles"
-  ], { errorMap: () => ({ message: "Please select a valid clothing style" }) }),
+  ])).min(1, { message: "Select at least one style" }),
   purchaseFactors: z.array(z.enum([
     "Price",
     "Brand",

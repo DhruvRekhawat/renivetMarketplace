@@ -11,41 +11,33 @@ const ShopByCategories = () => {
   return (
     <section className="flex flex-col space-y-4 w-full md:p-8 p-2 bg-brand-offwhite">
         <h2 className={"text-4xl  my-6" + " " + spectral.className}>Shop By Category</h2>
-        <div className="grid grid-cols-3 sm:grid-cols-5 gap-6 h-80">
-        <Link href="/categories/dresses">
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-6 h-80">
+        <Link href="/">
         <div className=" flex flex-col justify-center items-center gap-2 h-72 ">
         <Image src={CategoryImage1} alt="dress"></Image>
         <p className=" underline leading-4  ">Dress</p>
         </div>
         </Link>
-        <Link href="/categories/t-shirts">
+        <Link href="/">
         <div className=" flex flex-col justify-center items-center gap-2 h-72 ">
         <Image src={CategoryImage2} alt="dress"></Image>
         <p className=" underline leading-4  ">Men&apos;s Shirts</p>
         </div>
         </Link>
-        <Link href="/categories/twinning-set">
+        <Link href="/">
 
         <div className=" flex flex-col justify-center items-center gap-2 h-72 ">
         <Image src={CategoryImage3} alt="dress"></Image>
         <p className=" underline leading-4"> Kids </p>
         </div>
         </Link>
-        <Link href="/categories/bags">
+        <Link href="/">
 
         <div className=" flex flex-col justify-center items-center gap-2 h-72 ">
         <Image src={CategoryImage4} alt="dress" ></Image>
         <p className=" underline leading-4  ">Accessories</p>
         </div>
         </Link>
-        <Link href="/categories/home-decor">
-
-        <div className=" flex flex-col justify-center items-center gap-2 h-72">
-        <Image src={CategoryImage5} alt="dress"></Image>
-        <p className=" underline leading-4  ">Home Decor</p>
-        </div>
-        </Link>
-
         </div>
 
     </section>

@@ -32,13 +32,13 @@ const SurveySchema = z.object({
     "More than 30 Lakh"
   ], { errorMap: () => ({ message: "Please select a valid income range" }) }),
 
-  clothingStyle: z.enum([
+  clothingStyle: z.array(z.enum([
     "Formal",
     "Casual",
     "Party wear",
     "Activewear",
     "A mix of styles"
-  ], { errorMap: () => ({ message: "Please select a valid clothing style" }) }),
+  ])).min(1, { message: "Select at least one style" }),
 
   purchaseFactors: z.array(z.enum([
     "Price",
@@ -505,7 +505,7 @@ export default function Form() {
     <div className='mt-10 grid grid-cols-1 gap-x-2 gap-y-2 sm:grid-cols-10 '>
       
       < label className='sm:col-span-2'>
-        <input type="radio" id='Formal' value="Formal" {...register("clothingStyle")}  className='hidden peer'/>
+        <input type="checkbox" id='Formal'  onChange={() => handleCheckboxChange('clothingStyle', 'Formal')}  className='hidden peer'/>
         <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
         <Briefcase className='h-5 w-5 font-light'></Briefcase>
         <p>Formal</p>
@@ -513,7 +513,7 @@ export default function Form() {
         
       </label>
       <label className='sm:col-span-2'>
-        <input type="radio" id='Casual' value="Casual" {...register("clothingStyle")} className='hidden peer' />
+        <input type="checkbox" id='Casual' value="Casual" onChange={() => handleCheckboxChange('clothingStyle', 'Casual')} className='hidden peer' />
         <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
         <Shirt className='h-5 w-5 font-light'></Shirt>
         <p>Casual</p>
@@ -521,7 +521,7 @@ export default function Form() {
         
       </label>
       <label className='sm:col-span-2'>
-        <input type="radio" id='Party wear' value="Party wear" {...register("clothingStyle")} className='hidden peer' />
+        <input type="checkbox" id='Party wear' value="Party wear" onChange={() => handleCheckboxChange('clothingStyle', 'Party wear')} className='hidden peer' />
         <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
         <PartyPopper className='h-5 w-5 font-light'></PartyPopper>
         <p>Party wear</p>
@@ -529,7 +529,7 @@ export default function Form() {
         
       </label>
       <label className='sm:col-span-2'>
-        <input type="radio" id='Activewear' value="Activewear" {...register("clothingStyle")} className='hidden peer' />
+        <input type="checkbox" id='Activewear' value="Activewear" onChange={() => handleCheckboxChange('clothingStyle', 'Activewear')} className='hidden peer' />
         <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
         <Bike className='h-5 w-5 font-light'></Bike>
         <p>Activewear</p>
@@ -537,7 +537,7 @@ export default function Form() {
         
       </label>
       <label className='sm:col-span-2'>
-        <input type="radio" id='A mix of styles' value="A mix of styles" {...register("clothingStyle")} className='hidden peer' />
+        <input type="checkbox" id='A mix of styles' value="A mix of styles" onChange={() => handleCheckboxChange('clothingStyle', 'A mix of styles')} className='hidden peer' />
         <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
         <Heart className='h-5 w-5 font-light'></Heart>
         <p>A mix of styles</p>
@@ -630,7 +630,7 @@ export default function Form() {
             className='hidden peer'
           />
           <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44'>
-            <p className='text-center w-full'>{budget}</p>
+            <p className='text-center w-full'>{budget} INR</p>
           </Card>
         </label>
       ))}

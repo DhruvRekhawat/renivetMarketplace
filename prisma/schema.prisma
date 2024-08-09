@@ -187,7 +187,7 @@ model SurveyResponse {
   gender                        String
   occupation                    String
   annualIncome                  String
-  clothingStyle                 String
+  clothingStyle                 String[]
   purchaseFactors               String[] // Store as a list of strings
   typicalBudget                 String
   purchaseFrequency             String
