@@ -15,7 +15,7 @@ const karla = Karla({subsets:["latin"]})
 const spectral = Spectral({subsets:["latin"],weight:['600']})
 export const metadata: Metadata = {
   title: "Renivet",
-  description: "Renivet - A innovative marketplace for sustainable brands",
+  description: "Renivet - An Innovative Marketplace for Sustainable Brands",
   
 };
 
