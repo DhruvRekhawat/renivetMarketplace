@@ -500,7 +500,7 @@ export default function Form() {
     Which of the following best describes your clothing style?
     </h2>
     <p className='mt-1 text-sm leading-6 text-gray-600'>
-      Select the appropriate option
+      Select all that apply
     </p>
     <div className='mt-10 grid grid-cols-1 gap-x-2 gap-y-2 sm:grid-cols-10 '>
       

@@ -9,9 +9,9 @@ import { spectral } from "@/app/fonts";
 
 const ShopByCategories = () => {
   return (
-    <section className="flex flex-col space-y-4 w-full md:p-8 p-2 bg-brand-offwhite">
+    <section className="flex flex-col space-y-4 w-full md:p-16 p-2 bg-brand-offwhite gap-6">
         <h2 className={"text-4xl  my-6" + " " + spectral.className}>Shop By Category</h2>
-        <div className="grid grid-cols-3 sm:grid-cols-4 gap-6 h-80">
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-6 h-80 mt-4">
         <Link href="/">
         <div className=" flex flex-col justify-center items-center gap-2 h-72 ">
         <Image src={CategoryImage1} alt="dress"></Image>
