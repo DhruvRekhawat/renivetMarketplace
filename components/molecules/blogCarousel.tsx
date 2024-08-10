@@ -13,6 +13,7 @@ import { spectral } from "@/app/fonts";
 interface Post {
   title: string;
   description: string;
+  author:string;
   body: Block[];
   slug: Slug;
   time: string;
@@ -39,6 +40,7 @@ async function getData() {
       description,
       time,
       body,
+      author,
       slug,
       mainImage,
     }`,
@@ -49,6 +51,7 @@ async function getData() {
 
 const BlogCarousel = async() => {
 const blogData:Post[] = await getData();
+console.log(blogData)
 return (
 
       <Carousel
@@ -68,7 +71,7 @@ return (
                   </div>
                   <CardContent className="px-4 flex flex-col justify-between gap-2">
                   <span className={`text-lg text-[rgb(249,248,246)] ` + " "+ spectral.className}>{blog.title}</span>
-                  <span className="font-semibold text-xs text-[rgb(249,248,246)]"></span>
+                  <span className="font-semibold text-xs text-[rgb(249,248,246)]">by {blog.author}</span>
                   <Link href={`/blog/${blog.slug.current}`} ><button className="bg-white hover:bg-zinc-900 hover:text-white transition-all rounded-lg text-xs border-none p-2 w-fit">{blog.time} read </button></Link>
                   </CardContent>
                     

@@ -22,8 +22,8 @@ export default defineType({
     defineField({
       name: 'author',
       title: 'Author',
-      type: 'reference',
-      to: {type: 'author'},
+      type: 'string',
+      
     }),
     defineField({
       name: 'time',
