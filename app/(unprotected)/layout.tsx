@@ -35,7 +35,7 @@ export default function UnprotectedLayout({
             <ul className="text-brand-offwhite">
               <h1 className="text-lg text-brand-orangewhite">Contact Us</h1>
               
-              <li>Email: services@renivet.com</li>
+              <li><a href="support@renivet.com" target="_blank">Email: support@renivet.com</a></li>
               
             </ul>
             
