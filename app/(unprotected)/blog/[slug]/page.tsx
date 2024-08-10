@@ -42,9 +42,9 @@ const BlogPage = async ({params}:{params:{slug:string}}) => {
     const post = data.props.data
 
   return (
-    <main className='flex flex-col md:p-12 justify-center items-center bg-zinc-50 mt-32'>
+    <main className='flex flex-col md:p-12 justify-center items-center bg-zinc-50 mt-32 p-4 py-8 '>
     
-    <h1 className='text-lg md:text-4xl'>
+    <h1 className='text-lg font-semibold md:text-4xl'>
         {post[0].title}
     </h1>
     <h2 className='my-2 font-semibold text-sm'>{post[0].time}</h2>
