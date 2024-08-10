@@ -13,6 +13,13 @@ import BG from '@/assests/thom-milkovic-cBS0qKJM-P4-unsplash.jpg'
 import { Banknote, Bike, Briefcase, Gem, Glasses, HandCoins, Heart, Landmark, PartyPopper, PiggyBank, Shirt, Trees, Wallet } from 'lucide-react'
 import { toast } from 'sonner'
 import { useRouter} from 'next/navigation'
+import { Metadata } from 'next'
+
+
+export const metadata: Metadata = {
+  
+  description: 'Help us understand the Sustainable Fashion ecosystem better. Your input is invaluable—please share your thoughts in our brief survey!',
+}
 
 const SurveySchema = z.object({
   // Demographics
