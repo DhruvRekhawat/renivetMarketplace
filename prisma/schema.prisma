@@ -185,8 +185,9 @@ model SurveyResponse {
   email                         String   
   dob                           String
   gender                        String
+  country                       String    @default("")
   occupation                    String
-  annualIncome                  String
+  annualIncome               String?
   clothingStyle                 String[]
   purchaseFactors               String[] // Store as a list of strings
   typicalBudget                 String

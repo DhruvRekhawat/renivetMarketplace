@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { z } from 'zod';
+import { literal, z } from 'zod';
 
 // Initialize Prisma Client
 const prisma = new PrismaClient();
@@ -13,13 +13,7 @@ const surveySchema = z.object({
   dob: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, { message: "Date must be in YYYY-MM-DD format" }),
   gender: z.enum(["F", "M", "NB"], { errorMap: () => ({ message: "Please select a valid gender" }) }),
   occupation: z.enum(["Student", "Salaried", "Business"], { errorMap: () => ({ message: "Please select a valid occupation" }) }),
-  annualIncome: z.enum([
-    "Less than 5 Lakh",
-    "5 - 10 Lakh",
-    "10 - 20 Lakh",
-    "20 - 30 Lakh",
-    "More than 30 Lakh"
-  ], { errorMap: () => ({ message: "Please select a valid income range" }) }),
+  annualIncome: z.string().optional().or(z.literal(null)),
   clothingStyle: z.array(z.enum([
     "Formal",
     "Casual",
@@ -35,12 +29,7 @@ const surveySchema = z.object({
     "Style",
     "Other"
   ])).min(1, { message: "Select at least one factor" }),
-  typicalBudget: z.enum([
-    "Under 1000",
-    "1000 - 3000",
-    "3000 - 5000",
-    "More than 5000"
-  ], { errorMap: () => ({ message: "Please select a valid budget range" }) }),
+  typicalBudget: z.string(),
   purchaseFrequency: z.enum([
     "Less than once a month",
     "Once a month",
@@ -102,6 +91,7 @@ export async function POST(request: NextRequest) {
         email: parsedData.email,
         dob: parsedData.dob,
         gender: parsedData.gender,
+        country: data.userCountry,
         occupation: parsedData.occupation,
         annualIncome: parsedData.annualIncome,
         clothingStyle: parsedData.clothingStyle,

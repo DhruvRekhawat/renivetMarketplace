@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 import { literal, z } from 'zod'
@@ -18,6 +18,7 @@ import { Metadata } from 'next'
 
 
 
+
 const SurveySchema = z.object({
   // Demographics
   name: z.string().min(1, { message: "Name is required" }),
@@ -28,13 +29,7 @@ const SurveySchema = z.object({
   occupation: z.enum(["Student", "Salaried", "Business"], { errorMap: () => ({ message: "Please select a valid occupation" }) }),
 
   // Questions
-  annualIncome: z.enum([
-    "Less than 5 Lakh",
-    "5 - 10 Lakh",
-    "10 - 20 Lakh",
-    "20 - 30 Lakh",
-    "More than 30 Lakh"
-  ], { errorMap: () => ({ message: "Please select a valid income range" }) }),
+  annualIncome: z.string().optional().or(z.literal(null)),
 
   clothingStyle: z.array(z.enum([
     "Formal",
@@ -54,12 +49,7 @@ const SurveySchema = z.object({
   ])).min(1, { message: "Select at least one factor" }),
   otherPurchaseFactor: z.string().optional(),
 
-  typicalBudget: z.enum([
-    "Under 1000",
-    "1000 - 3000",
-    "3000 - 5000",
-    "More than 5000"
-  ], { errorMap: () => ({ message: "Please select a valid budget range" }) }),
+  typicalBudget: z.string(),
 
   purchaseFrequency: z.enum([
     "Less than once a month",
@@ -206,10 +196,60 @@ const steps = [
 
 
 export default function Form() {
+
+
+
+  const [userCountry, setUserCountry] = useState("");
   const [previousStep, setPreviousStep] = useState(0)
   const [currentStep, setCurrentStep] = useState(0)
+  const [budget,setBudget] = useState([""])
+  const [income,setIncome] = useState([""])
   const delta = currentStep - previousStep
   const router = useRouter();
+   
+  const fetchUserCountry = async () => {
+      try {
+          const response = await fetch("https://api.ipify.org?format=json");
+          const data = await response.json();
+          const userIP = data.ip;
+
+          const countryResponse = await fetch(
+              `https://ipapi.co/${userIP}/country/`
+          );
+          const country = await countryResponse.text();
+
+          setUserCountry(country);
+
+          if(country==="IN")
+            {
+              setBudget(["Under 1000 INR", "1000 - 3000 INR", "3000 - 5000 INR", "More than 5000 INR"])
+              setIncome(["Less Than 5 Lakhs INR"," 5-10 Lakhs INR"," 10-20 Lakhs INR","20-30 Lakhs INR", "More than 30 Lakhs INR"
+              ])
+            }
+            else if(country === "US"){
+              setBudget(["Under 10 USD", "10 - 35 USD", "35 - 60 USD", "More than 60 USD"])
+              setIncome(["Less Than 6000 USD"," 6000-12,000 USD"," 12,000-25,000 USD"," 25,000 - 35,000 USD", "More than 35,000 USD"
+              ])
+            }
+            else {
+              setBudget(["Under 10 EURO", "10 - 30 EURO", "30 - 50 EURO", "More than 50 EURO"])
+              setIncome(["Less Than 6000 EURO"," 6000-12,000 EURO"," 12,000-25,000 EURO"," 25,000- 35,000 EURO", "More than 35,000 EURO"
+              ])
+            }
+
+      } catch (error) {
+          console.error("Error fetching user country:", error);
+      }
+  };
+ 
+
+  useEffect(() => {
+      fetchUserCountry();
+  }, []);
+
+
+ 
+
 
   const {
     register,
@@ -243,7 +283,7 @@ export default function Form() {
     try{
       fetch('/api/survey',{
         method:"POST",
-        body:JSON.stringify(data)
+        body:JSON.stringify({...data,userCountry})
       })
       toast.success('Thank you for participating in our survey!',{
         duration:1000,
@@ -296,10 +336,8 @@ export default function Form() {
       {/* steps */}
       <Image src={BG} objectFit='cover' className='-z-10 aspect-auto top-0 fixed w-full h-[175vh] sm:h-auto' alt='bg'></Image>
       <Card className='px-4 py-6 pb-2 md:p-8 rounded-sm sm:w-2/3 w-full flex-grow'>
-      
-
       {/* Form */}
-      
+      <p>{userCountry}{budget}</p>
       <form className='' onSubmit={handleSubmit(processForm)}>
 
       {currentStep === 0 && (
@@ -450,42 +488,42 @@ export default function Form() {
     <div className='mt-10 grid grid-cols-1 gap-x-2 gap-y-2 sm:grid-cols-10 '>
       
       < label className='sm:col-span-2'>
-        <input type="radio" id='Less than 5 Lakh' value="Less than 5 Lakh" {...register("annualIncome")}  className='hidden peer'/>
+        <input type="radio" id='Less than 5 Lakh' value={income[0]} {...register("annualIncome")}  className='hidden peer'/>
         <Card className='flex md:flex-col gap-x-2 p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
         <HandCoins className='h-5 w-5 font-light'></HandCoins>
-        <p>Less Than 5 Lakh</p>
+        <p>{income[0]}</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
-        <input type="radio" id='5 - 10 Lakh' value="5 - 10 Lakh" {...register("annualIncome")} className='hidden peer' />
+        <input type="radio" id='5 - 10 Lakh' value={income[1]} {...register("annualIncome")} className='hidden peer' />
         <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
         <Wallet className='h-5 w-5 font-light'></Wallet>
-        <p>5 - 10 Lakh</p>
+        <p>{income[1]}</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
-        <input type="radio" id='10 - 20 Lakh' value="10 - 20 Lakh" {...register("annualIncome")} className='hidden peer' />
+        <input type="radio" id='10 - 20 Lakh' value={income[2]} {...register("annualIncome")} className='hidden peer' />
         <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
         <PiggyBank className='h-5 w-5 font-light'></PiggyBank>
-        <p>10 - 20 Lakh</p>
+        <p>{income[2]}</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
-        <input type="radio" id='20 - 30 Lakh' value="20 - 30 Lakh" {...register("annualIncome")} className='hidden peer' />
+        <input type="radio" id='20 - 30 Lakh' value={income[3]} {...register("annualIncome")} className='hidden peer' />
         <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
         <Banknote className='h-5 w-5 font-light'></Banknote>
-        <p>20 - 30 Lakh</p>
+        <p>{income[3]}</p>
         </Card>
         
       </label>
       <label className='sm:col-span-2'>
-        <input type="radio" id='More than 30 Lakh' value="More than 30 Lakh" {...register("annualIncome")} className='hidden peer' />
+        <input type="radio" id='More than 30 Lakh' value={income[4]} {...register("annualIncome")} className='hidden peer' />
         <Card className='flex md:flex-col p-4 gap-y-8 gap-x-2  justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44 '>
         <Landmark className='h-5 w-5 font-light'></Landmark>
-        <p>More than 30 Lakh</p>
+        <p>{income[4]}</p>
         </Card>
         
       </label>
@@ -625,7 +663,10 @@ export default function Form() {
       Select the appropriate option
     </p>
     <div className='mt-10 grid grid-cols-1 gap-x-2 gap-y-2 sm:grid-cols-10'>
-      {["Under 1000", "1000 - 3000", "3000 - 5000", "More than 5000"].map((budget) => (
+      {
+      
+
+      budget.map((budget) => (
         <label key={budget} className='sm:col-span-2 cursor-pointer'>
           <input
             type="radio"
@@ -634,7 +675,7 @@ export default function Form() {
             className='hidden peer'
           />
           <Card className='flex flex-col p-4 gap-y-8 justify-center items-center peer-checked:border-brand-brown peer-checked:border peer-checked:bg-orange-200 h-15 sm:h-44'>
-            <p className='text-center w-full'>{budget} INR</p>
+            <p className='text-center w-full'>{budget}</p>
           </Card>
         </label>
       ))}
