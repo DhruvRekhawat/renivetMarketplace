@@ -337,7 +337,6 @@ export default function Form() {
       <Image src={BG} objectFit='cover' className='-z-10 aspect-auto top-0 fixed w-full h-[175vh] sm:h-auto' alt='bg'></Image>
       <Card className='px-4 py-6 pb-2 md:p-8 rounded-sm sm:w-2/3 w-full flex-grow'>
       {/* Form */}
-      <p>{userCountry}{budget}</p>
       <form className='' onSubmit={handleSubmit(processForm)}>
 
       {currentStep === 0 && (
