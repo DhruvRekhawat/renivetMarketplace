@@ -282,7 +282,7 @@ export function CategoriesNavbar() {
   return (
     <NavigationMenu className="">
       <NavigationMenuList className="py-1">
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NavigationMenuTrigger className="bg-brand-offwhite" >Shop All</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -314,7 +314,7 @@ export function CategoriesNavbar() {
               </ListItem>
             </ul>
           </NavigationMenuContent>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
 
 
         <NavigationMenuItem>
@@ -385,7 +385,7 @@ export function CategoriesNavbar() {
             </ScrollArea>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NavigationMenuTrigger className="bg-brand-offwhite">Home and Living</NavigationMenuTrigger>
           <NavigationMenuContent className="mx-4">
             <ScrollArea className="h-64 w-[50vw]">
@@ -401,7 +401,7 @@ export function CategoriesNavbar() {
             </ul>
             </ScrollArea>
           </NavigationMenuContent>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
 
 
 

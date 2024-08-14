@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
         websiteUrl: data.websiteUrl || null,
         businessType: data.businessType, // Ensure this matches your enum
         businessRegistrationNumber: data.businessRegistrationNumber,
-        countryOfRegistration: data.countryOfRegistration,
+        countryOfRegistration: data.businessCountryOfRegistration,
         gstNumber: data.gstNumber || null,
         productDescription: data.productDescription || '',
         categories: data.categories || [],

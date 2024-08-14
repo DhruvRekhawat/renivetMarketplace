@@ -22,9 +22,9 @@ import { Metadata } from 'next'
 const SurveySchema = z.object({
   // Demographics
   name: z.string().min(1, { message: "Name is required" }),
-  mobile: z.string().min(10, { message: "Mobile number must be at least 10 digits" }),
+  mobile: z.string().min(10, { message: "Mobile number must be at least 10 digits" }).optional().or(z.literal(null)),
   email: z.string().email({ message: "Invalid email address" }),
-  dob: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, { message: "Date must be in YYYY-MM-DD format" }),
+  dob: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, { message: "Date must be in YYYY-MM-DD format" }).optional().or(z.literal(null)),
   gender: z.enum(["F", "M", "NB"], { errorMap: () => ({ message: "Please select a valid gender" }) }),
   occupation: z.enum(["Student", "Salaried", "Business"], { errorMap: () => ({ message: "Please select a valid occupation" }) }),
 
@@ -355,7 +355,7 @@ export default function Form() {
       {/* Name */}
       <div className='sm:col-span-2'>
         <label htmlFor='name' className='block text-sm font-medium leading-6 text-gray-900'>
-          Full Name
+          Full Name <span className='text-red-600 text-xs'>*</span>
         </label>
         <div className='mt-2'>
           <input
@@ -392,7 +392,7 @@ export default function Form() {
       {/* Email */}
       <div className='sm:col-span-2'>
         <label htmlFor='email' className='block text-sm font-medium leading-6 text-gray-900'>
-          Email address
+          Email address <span className='text-red-600 text-xs'>*</span>
         </label>
         <div className='mt-2'>
           <input
@@ -414,7 +414,7 @@ export default function Form() {
         </label>
         <div className='mt-2'>
           <input
-            type='date'
+            type=""
             id='dob'
             {...register('dob')}
             placeholder='YYYY-MM-DD'
@@ -429,7 +429,7 @@ export default function Form() {
       {/* Gender */}
       <div className='sm:col-span-2'>
         <label htmlFor='gender' className='block text-sm font-medium leading-6 text-gray-900'>
-          Gender
+          Gender <span className='text-red-600 text-xs'>*</span>
         </label>
         <div className='mt-2'>
           <select
@@ -451,7 +451,7 @@ export default function Form() {
       {/* Occupation */}
       <div className='sm:col-span-2'>
         <label htmlFor='occupation' className='block text-sm font-medium leading-6 text-gray-900'>
-          Occupation
+          Occupation <span className='text-red-600 text-xs'>*</span>
         </label>
         <div className='mt-2'>
           <select

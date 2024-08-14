@@ -51,7 +51,6 @@ async function getData() {
 
 const BlogCarousel = async() => {
 const blogData:Post[] = await getData();
-console.log(blogData)
 return (
 
       <Carousel
