@@ -412,7 +412,7 @@ export default function Form() {
         <label htmlFor='dob' className='block text-sm font-medium leading-6 text-gray-900'>
           Date of Birth
         </label>
-        <div className='mt-2'>
+        <div className='mt-2'> 
           <input
             type="date"
             id='dob'
