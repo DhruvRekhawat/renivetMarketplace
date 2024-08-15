@@ -414,7 +414,7 @@ export default function Form() {
         </label>
         <div className='mt-2'>
           <input
-            type=""
+            type="date"
             id='dob'
             {...register('dob')}
             placeholder='YYYY-MM-DD'
