@@ -5,7 +5,8 @@ import { hash } from "bcryptjs";
 export async function POST(req: NextRequest) {
   try {
     const formdata = await req.json();
-    const email = formdata.email;
+    const email = formdata.email as string;
+    const name = formdata.name as string;
     const password = formdata.password;
     const confirmPassword = formdata.confirmPassword;
 
@@ -28,10 +29,19 @@ export async function POST(req: NextRequest) {
       await prisma.user.create({
         data: {
           email: email,
+          name: name,
           password: hashedPassword,
           role: "brand"
         },
       });
+
+      await prisma.brand.create({
+        data:{
+          email: email,
+          contactName: name,
+          status: "DRAFT"
+        }
+      })
 
       return NextResponse.json({ message: "Registration successful" }, { status: 200 });
     } else {

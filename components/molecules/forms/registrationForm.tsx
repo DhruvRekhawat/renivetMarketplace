@@ -20,6 +20,9 @@ import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 
 const formSchema = z.object({
+  name: z.string().min(1,{
+    message:"Please enter your full name"
+  }),
   email: z.string().email().min(2, {
     message: "Email must be at least 2 characters.",
   }),
@@ -85,6 +88,20 @@ export default function RegisterationForm() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}className="space-y-2">
         
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              
+              <FormControl>
+                <Input placeholder="Full Name" {...field} />
+              </FormControl>
+              
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="email"

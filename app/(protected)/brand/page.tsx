@@ -27,7 +27,9 @@ function BrandLogin() {
 
   if (state?.type === 'success') {
     toast.success(state.message);
-    router.push(`/brand/${state.email}/home`);
+    let slug = encodeURI(state.name)
+    console.log(state)
+    router.push(`/brand/${slug}/home`);
   }
 
   if (state?.type === 'error') {

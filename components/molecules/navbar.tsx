@@ -76,7 +76,7 @@ const Navbar = () => {
 
     </div>
      <div className="w-screen fixed bg-brand-offwhite md:flex justify-center hidden shadow-md">   
-       {/* <CategoriesNavbar></CategoriesNavbar> */}
+       <CategoriesNavbar></CategoriesNavbar>
    </div>
 
     </nav>

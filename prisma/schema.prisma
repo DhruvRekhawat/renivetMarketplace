@@ -54,20 +54,20 @@ model Category {
 
 model Brand {
   id                             Int        @id @default(autoincrement())
-  brandName                      String
-  contactName                    String
-  email                          String     @unique
-  password                       String
-  phoneNumber                    String
+  brandName                      String?
+  contactName                    String?
+  email                          String?    @unique
+  password                       String?
+  phoneNumber                    String?
   websiteUrl                     String? 
   products                       Product[]
-  businessType                   BusinessType
-  businessRegistrationNumber     String
-  countryOfRegistration          String
+  businessType                   BusinessType?
+  businessRegistrationNumber     String?
+  countryOfRegistration          String?
   gstNumber                      String?
-  productDescription             String
+  productDescription             String?
   categories                     String[]
-  materials                      String
+  materials                      String?
   sustainabilityCertifications   String[]
   unSdgs                         String[]
   brandStory                     String?

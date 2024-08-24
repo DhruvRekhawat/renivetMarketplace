@@ -9,6 +9,7 @@ import FB from "@/assests/icons/facebook.png"
 import IG from "@/assests/icons/instagram.png"
 import X from  "@/assests/icons/twitter.png"
 import { Toaster } from "@/components/ui/sonner";
+import SessionWrapper from "@/components/molecules/SessionWrapper"
 
 const merriweather = Merriweather({subsets:["latin"],weight:['300','400','700']})
 const karla = Karla({subsets:["latin"]})
@@ -25,6 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <SessionWrapper>
     <html lang="en">
       <Head>
         <link rel="icon" href="/icon.jpg" type="image/x-icon" />
@@ -37,5 +39,6 @@ export default function RootLayout({
         <Toaster richColors position="top-center"></Toaster>
       </body>
     </html>
+    </SessionWrapper>
   );
 }

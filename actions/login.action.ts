@@ -38,7 +38,7 @@ export const login = async (prevData: any, formData: FormData) => {
           email,
         },
       });
-  
+    
       if (!user) {
         return {
           type: 'error',
@@ -62,6 +62,7 @@ export const login = async (prevData: any, formData: FormData) => {
         type: 'success',
         message: 'Logged in successfully.',
         email: email,
+        name: user.name
       };
     } catch (error) {
       return {

@@ -1,18 +1,11 @@
-import { Payment, columns } from "./columns"
+import { Brand, columns } from "./columns"
 import { DataTable } from "./data-table"
+import prisma from "@/lib/db"
 
-
-async function getData(): Promise<Payment[]> {
-  // Fetch data from your API here.
-  return [
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-    // ...
-  ]
+async function getData(): Promise<Brand[]> {
+  const brands = await prisma.brand.findMany()
+  return brands
+  
 }
 
 const ManageBrands = async() => {

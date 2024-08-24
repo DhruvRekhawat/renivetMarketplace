@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/dialog"
 import { spectral } from "./fonts";
 import ShopByCategories from "@/components/molecules/shopByCategories";
+import { SessionProvider } from "next-auth/react"
 
 export default function Home() {
 

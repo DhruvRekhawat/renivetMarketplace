@@ -3,54 +3,76 @@
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { ColumnDef } from "@tanstack/react-table"
+import Link from "next/link"
+import prisma from "@/lib/db"
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Payment = {
-  id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
-  email: string
+export type Brand = {
+  id: number;
+  brandName?: string | null;
+  contactName?: string | null;
+  countryOfRegistration?: string | null; 
+  categories?: string[]; 
+  status: string;
 }
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<Brand>[] = [
     {
         accessorKey: "brandName",
         header: "Name",
+    },
+    {
+        accessorKey: "contactName",
+        header: "Contact Name",
     },
     {
         accessorKey: "categories",
         header: "Categories",
     },
     {
-        accessorKey: "description",
-        header: "Product Description",
+        accessorKey: "countryOfRegistration",
+        header: "Country",
     },
+    
     {
       accessorKey: "status",
       header: "Status",
     },
     {
     id: "actions",
+    header:"Actions",
     cell: ({ row }) => {
-      const payment = row.original
- 
+      const brand = row.original
+      const brandid = row.original.id
+     
+      async function updateBrandStatus(id:number, newStatus:String) {
+        try {
+          const response = await fetch('/api/approve-brand', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id, status: newStatus }),
+          });
+      
+          if (!response.ok) {
+            throw new Error('Failed to update brand status');
+          }
+      
+          const updatedBrand = await response.json();
+          console.log('Brand status updated:', updatedBrand);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+
       return (
-        <Sheet>
-          <SheetTrigger>
-            <Button size={"sm"}>
-                View Details
-              </Button></SheetTrigger>
-           <SheetContent style={{ maxWidth: '50vw' }}>
-            <SheetHeader>
-      <SheetTitle>Are you absolutely sure?</SheetTitle>
-      <SheetDescription>
-        This action cannot be undone. This will permanently delete your account
-        and remove your data from our servers.
-      </SheetDescription>
-    </SheetHeader>
-  </SheetContent>
-</Sheet>
+        <div className="flex gap-4">
+        <Link href={`/superadmin/brands/${brandid}`}>
+          <Button size={"sm"} >View Details</Button>
+        </Link>
+        <Button onClick={()=>updateBrandStatus(brandid,"APPROVED")} size={"sm"} variant={"secondary"} className="bg-green-600 text-white hover:bg-green-600/75">Approve</Button>
+        <Button onClick={()=>updateBrandStatus(brandid,"REMOVED")} size={"sm"} variant={"destructive"} >Reject</Button>
+        </div>
       )
     },
   },

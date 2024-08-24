@@ -5,6 +5,7 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import {spectral} from '@/app/fonts'
 import Image from "next/image"
 import Image1 from '@/assests/jakob-owens-uE_N2i6-TRM-unsplash.jpg'
 import Image2 from '@/assests/joeyy-lee-qOhSUmbbymw-unsplash.jpg'
@@ -101,7 +102,7 @@ export default function ProductPage({params}:{params:{slug:string}}) {
       </div>
       <div className="grid gap-4 md:gap-10 items-start">
         <div className="grid gap-2">
-          <h1 className="font-bold text-3xl lg:text-4xl">Acme Prism T-Shirt</h1>
+          <h1 className={" text-3xl lg:text-4xl" + " " + spectral.className}>Acme Prism T-Shirt</h1>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-0.5">
               <StarIcon className="w-5 h-5 fill-primary" />
@@ -113,7 +114,7 @@ export default function ProductPage({params}:{params:{slug:string}}) {
             <div className="text-muted-foreground">(12 reviews)</div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="text-4xl font-bold">₹3,499</div>
+            <div className="text-md">₹3,499</div>
             <div className="text-sm text-muted-foreground line-through">₹4,199</div>
             <div className="bg-primary px-2 py-1 rounded-md text-primary-foreground text-sm font-medium">20% off</div>
           </div>
@@ -208,10 +209,13 @@ export default function ProductPage({params}:{params:{slug:string}}) {
           </div>
           <div className="flex flex-col gap-2 min-[400px]:flex-row">
             <Button size="lg">Add to cart</Button>
+            
             <Button size="lg" variant="outline">
               <HeartIcon className="w-4 h-4 mr-2" />
-              Add to wishlist
+               Add to wishlist 
+              
             </Button>
+      
           </div>
         </form>
         <Separator />
