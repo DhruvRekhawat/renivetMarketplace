@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "name": "Organic Cotton",
+    "description": "The Organic Cotton Lightweight Polo",
+    "price": "€179,00",
+    "rating": 5,
+    "productId": "23SS-54W",
+    "installments-info": "or 3 installments of € 59.66 without interest",
+    "traditional-retail-price": "€299",
+    "sizes": [
+      {
+        "size": "xs",
+        "isAvailable": true
+      },
+      {
+        "size": "s",
+        "isAvailable": true
+      },
+      {
+        "size": "M",
+        "isAvailable": true
+      },
+      {
+        "size": "l",
+        "isAvailable": false
+      },
+      {
+        "size": "xl",
+        "isAvailable": false
+      }
+    ],
+    "colors": [
+      {
+        "colorName": "Black",
+        "images": [
+          "https://artknit-studios.com/cdn/shop/files/TheOrganicCottonlightweightpolo-23SS-54W-Black-ArtknitStudios_3.jpg?v=1713805940&width=1000",
+          "https://artknit-studios.com/cdn/shop/files/TheOrganicCottonlightweightpolo-23SS-54W-Black-ArtknitStudios_4.jpg?v=1715962057&width=500",
+          "https://artknit-studios.com/cdn/shop/files/TheOrganicCottonlightweightpolo-23SS-54W-Black-ArtknitStudios_2.jpg?v=1715962056&width=400",
+          "https://artknit-studios.com/cdn/shop/files/TheOrganicCottonlightweightpolo-23SS-54W-Black-ArtknitStudios_5.jpg?v=1715962056&width=400",
+          "https://artknit-studios.com/cdn/shop/files/TheOrganicCottonlightweightpolo-23SS-54W-Black-ArtknitStudios.jpg?v=1715962056&width=400"
+        ]
+      },
+      {
+        "colorName": "Navy",
+        "images": [
+          "https://artknit-studios.com/cdn/shop/files/TheOrganicCottonRibbedPolo-SS23-52W-DeepBlue-Artknitstudios.jpg?v=1715962342&width=1000",
+          "https://artknit-studios.com/cdn/shop/files/TheOrganicCottonRibbedPolo-SS23-52W-DeepBlue-Artknitstudios_5.jpg?v=1715962342&width=500",
+          "https://artknit-studios.com/cdn/shop/files/TheOrganicCottonRibbedPolo-SS23-52W-DeepBlue-Artknitstudios_2.jpg?v=1715962342&width=400",
+          "https://artknit-studios.com/cdn/shop/files/TheOrganicCottonRibbedPolo-SS23-52W-DeepBlue-Artknitstudios_4.jpg?v=1715962342&width=400",
+          "https://artknit-studios.com/cdn/shop/files/TheOrganicCottonRibbedPolo-SS23-52W-DeepBlue-Artknitstudios_3.jpg?v=1715962342&width=400",
+          "https://artknit-studios.com/cdn/shop/files/TheOrganicCottonRibbedPolo-22SS-52WBLUE-ArtknitStudios1_87a38a32-2e49-4c48-ab2d-aceae1c05f8a.jpg?v=1715962342&width=400"
+        ]
+      }
+    ]
+  }
+]
